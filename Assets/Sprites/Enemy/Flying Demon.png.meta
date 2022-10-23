@@ -1,0 +1,960 @@
+fileFormatVersion: 2
+guid: 11f71aeafd92ef84b9f81556b0264f51
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Flying Demon_Idle0
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 255
+        width: 137
+        height: 127
+      alignment: 9
+      pivot: {x: 0.2967583, y: 0.5897863}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bab961a9eaaac84393f9c8bc4f9de32
+      internalID: -99631857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Idle1
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 255
+        width: 159
+        height: 95
+      alignment: 9
+      pivot: {x: 0.33655456, y: 0.79867876}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ca82b2a460e96047a7a4e561d55fc8b
+      internalID: 1469124176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Idle2
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 257
+        width: 143
+        height: 93
+      alignment: 9
+      pivot: {x: 0.32136205, y: 0.8175203}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cbea9c4f1cc6c9438454183125c1392
+      internalID: 1486000490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Idle3
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 257
+        width: 103
+        height: 96
+      alignment: 9
+      pivot: {x: 0.39859867, y: 0.8092082}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 948561be283f8f84fb7ad88872092b8d
+      internalID: 1199662531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Idle4
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 257
+        width: 143
+        height: 93
+      alignment: 9
+      pivot: {x: 0.32125023, y: 0.8162271}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcf648ffbf906eb488e1962b0e76b59a
+      internalID: -1179727334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Idle5
+      rect:
+        serializedVersion: 2
+        x: 802
+        y: 257
+        width: 160
+        height: 93
+      alignment: 9
+      pivot: {x: 0.34502906, y: 0.7932789}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4e56721dd212eb41960329963cac6f4
+      internalID: -1989006071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Attack0
+      rect:
+        serializedVersion: 2
+        x: 1072
+        y: 212
+        width: 137
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6e4df280529d5d4b912081c2017040d
+      internalID: 1905238547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Attack6
+      rect:
+        serializedVersion: 2
+        x: 2231
+        y: 213
+        width: 110
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33e1af2b5aa64264a99a4381673e9d73
+      internalID: 1323243046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Attack7
+      rect:
+        serializedVersion: 2
+        x: 2424
+        y: 215
+        width: 109
+        height: 156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5f4d8c3fb8be414a986d1ceda97014c
+      internalID: -319915996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Fire0
+      rect:
+        serializedVersion: 2
+        x: 2567
+        y: 311
+        width: 41
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6742822753a465439621099158d5f9f
+      internalID: 1720614362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Fire1
+      rect:
+        serializedVersion: 2
+        x: 2654
+        y: 277
+        width: 131
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b4cb19b3d08cd74b80be740ebe70ac5
+      internalID: -1007417969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Fire2
+      rect:
+        serializedVersion: 2
+        x: 2811
+        y: 275
+        width: 121
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 818d04cf8cd62d84fb21fc63f300befe
+      internalID: -1390109700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Fire3
+      rect:
+        serializedVersion: 2
+        x: 2979
+        y: 277
+        width: 122
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47f3ae7356f194e47aab56439bca68f8
+      internalID: -263660005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Attack1
+      rect:
+        serializedVersion: 2
+        x: 1264
+        y: 221
+        width: 99
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f65a93a1bb2aa24bae8f86a925258d4
+      internalID: -354761829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Attack2
+      rect:
+        serializedVersion: 2
+        x: 1454
+        y: 225
+        width: 96
+        height: 94
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 266ed1032b7326e4f898dc29be414c48
+      internalID: 621099152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Attack3
+      rect:
+        serializedVersion: 2
+        x: 1633
+        y: 216
+        width: 150
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6c3fda29e2f93346b79a1235bf53c2c
+      internalID: -122415538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Attack4
+      rect:
+        serializedVersion: 2
+        x: 1834
+        y: 218
+        width: 144
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe187a13238195f4bba63d074d110a27
+      internalID: 1729645306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Attack5
+      rect:
+        serializedVersion: 2
+        x: 2035
+        y: 218
+        width: 122
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 166ab14f7b033c94ab1960bfb97f24e1
+      internalID: -578074605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Breath0
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 24
+        width: 137
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62e54e35a8801c64e972a6f6ccfbbce8
+      internalID: -1673980466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Breath1
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 34
+        width: 98
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4f32a9cebabf1547b81b80f7d46e9da
+      internalID: -48713496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Breath2
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 37
+        width: 98
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c679a639d65697d40bc91b8c51c9583a
+      internalID: 1116965020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Breath6
+      rect:
+        serializedVersion: 2
+        x: 1446
+        y: 26
+        width: 127
+        height: 159
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fdce8d399a6fc24c9274a34eca980e4
+      internalID: 1287356859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Breath7
+      rect:
+        serializedVersion: 2
+        x: 1611
+        y: 15
+        width: 203
+        height: 169
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f5d0026cb3470b4a8be3046ff48e8a4
+      internalID: 2133537179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Breath8
+      rect:
+        serializedVersion: 2
+        x: 1848
+        y: 13
+        width: 205
+        height: 172
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56048325b01ee254eb0a3fe88e2d0062
+      internalID: -257427068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Breath9
+      rect:
+        serializedVersion: 2
+        x: 2099
+        y: 15
+        width: 195
+        height: 169
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b7a48c4b279a134a80a784ab22499df
+      internalID: -801762352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Breath10
+      rect:
+        serializedVersion: 2
+        x: 2340
+        y: 13
+        width: 193
+        height: 171
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e17ddbaa0b1177f47a50ec9a75a902a4
+      internalID: 392615570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Breath3
+      rect:
+        serializedVersion: 2
+        x: 722
+        y: 29
+        width: 150
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d94e03e0fc52d24096d7b64533f18a5
+      internalID: 1931118253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Breath4
+      rect:
+        serializedVersion: 2
+        x: 970
+        y: 31
+        width: 144
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be4c1eb3f3b9ec34598a192ebd3ce668
+      internalID: -759396710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Breath5
+      rect:
+        serializedVersion: 2
+        x: 1220
+        y: 31
+        width: 121
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f410c07c6563e134dbbf30e8d6716368
+      internalID: -324211055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Fire4
+      rect:
+        serializedVersion: 2
+        x: 3144
+        y: 277
+        width: 122
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aaabcefb1ed6a0f4f8bcd11687f33801
+      internalID: 669056560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Fire5
+      rect:
+        serializedVersion: 2
+        x: 2567
+        y: 98
+        width: 46
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f633fc8a9120f8f439ef1c8d07adf6a2
+      internalID: -1199188963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Fire6
+      rect:
+        serializedVersion: 2
+        x: 2654
+        y: 64
+        width: 131
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f67389c2864f4f49bbab59d0674183f
+      internalID: -165295683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Fire7
+      rect:
+        serializedVersion: 2
+        x: 2811
+        y: 62
+        width: 121
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75cd1dfc18b066e4c92824d99006b7ad
+      internalID: -1224410897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Fire8
+      rect:
+        serializedVersion: 2
+        x: 2979
+        y: 65
+        width: 122
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6be7bd9ee8845e040a5832dff48580c3
+      internalID: -417608353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flying Demon_Fire9
+      rect:
+        serializedVersion: 2
+        x: 3144
+        y: 64
+        width: 122
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3480021b0331fbe45a6acbbb1669bc5b
+      internalID: -2074901481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Flying Demon_Breath0: -1673980466
+      Flying Demon_45: -971222371
+      Flying Demon_44: 95950716
+      Flying Demon_16: 1042880786
+      Flying Demon_56: -1387833947
+      Flying Demon_63: -431930056
+      Flying Demon_Breath9: -801762352
+      Flying Demon_58: -763352728
+      Flying Demon_Idle0: -99631857
+      Flying Demon_Fire1: -1007417969
+      Flying Demon_66: 1641078616
+      Flying Demon_12: 1009205867
+      Flying Demon_Attack0: 1905238547
+      Flying Demon_Breath1: -48713496
+      Flying Demon_Breath8: -257427068
+      Flying Demon_Fire3: -263660005
+      Flying Demon_Attack1: -354761829
+      Flying Demon_Fire9: -2074901481
+      Flying Demon_Idle1: 1469124176
+      Flying Demon_32: 744223555
+      Flying Demon_22: 1459367560
+      Flying Demon_Fire0: 1720614362
+      Flying Demon_Fire5: -1199188963
+      Flying Demon_54: -807961491
+      Flying Demon_14: 1796641310
+      Flying Demon_15: 1383784076
+      Flying Demon_46: 1684023493
+      Flying Demon_25: 1046743965
+      Flying Demon_27: 756100886
+      Flying Demon_70: 509215171
+      Flying Demon_Breath7: 2133537179
+      Flying Demon_Attack4: 1729645306
+      Flying Demon_62: -142641455
+      Flying Demon_Fire4: 669056560
+      Flying Demon_29: 146750057
+      Flying Demon_43: 1908314433
+      Flying Demon_Attack6: 1323243046
+      Flying Demon_Idle5: -1989006071
+      Flying Demon_55: 1045778718
+      Flying Demon_64: -425199889
+      Flying Demon_69: -2038177513
+      Flying Demon_19: -178834705
+      Flying Demon_24: -480362477
+      Flying Demon_Attack5: -578074605
+      Flying Demon_49: 823514307
+      Flying Demon_68: -1548877028
+      Flying Demon_Breath6: 1287356859
+      Flying Demon_Fire2: -1390109700
+      Flying Demon_61: 2063985139
+      Flying Demon_41: 1193045743
+      Flying Demon_Attack2: 621099152
+      Flying Demon_Idle3: 1199662531
+      Flying Demon_Breath4: -759396710
+      Flying Demon_Breath2: 1116965020
+      Flying Demon_28: 89875738
+      Flying Demon_20: -1376164851
+      Flying Demon_72: -321201515
+      Flying Demon_Idle2: 1486000490
+      Flying Demon_48: -616857664
+      Flying Demon_Fire7: -1224410897
+      Flying Demon_Fire8: -417608353
+      Flying Demon_Breath10: 392615570
+      Flying Demon_67: 1407686331
+      Flying Demon_23: -2017535275
+      Flying Demon_57: 298379439
+      Flying Demon_Breath3: 1931118253
+      Flying Demon_60: -1254240719
+      Flying Demon_Fire6: -165295683
+      Flying Demon_Idle4: -1179727334
+      Flying Demon_65: -1660110265
+      Flying Demon_Attack3: -122415538
+      Flying Demon_59: 1305234284
+      Flying Demon_53: 323975824
+      Flying Demon_21: 794503283
+      Flying Demon_42: 832291814
+      Flying Demon_Breath5: -324211055
+      Flying Demon_Attack7: -319915996
+      Flying Demon_71: 1307093769
+      Flying Demon_47: -1424852154
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

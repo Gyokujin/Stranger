@@ -1380,7 +1380,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 1.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1709,6 +1709,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9076023836035732815, guid: 65b2cf3845e4c9c4198fd46ad68050e3, type: 3}
   m_PrefabInstance: {fileID: 385754619}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &721855292
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1050422341}
+    m_Modifications:
+    - target: {fileID: 9128936152294941464, guid: 2567a93c5cd25f74894e863f178ceb32, type: 3}
+      propertyPath: m_Name
+      value: Flying Demon
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128936152294941465, guid: 2567a93c5cd25f74894e863f178ceb32, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128936152294941466, guid: 2567a93c5cd25f74894e863f178ceb32, type: 3}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128936152294941466, guid: 2567a93c5cd25f74894e863f178ceb32, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 99
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128936152294941466, guid: 2567a93c5cd25f74894e863f178ceb32, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128936152294941466, guid: 2567a93c5cd25f74894e863f178ceb32, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128936152294941466, guid: 2567a93c5cd25f74894e863f178ceb32, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128936152294941466, guid: 2567a93c5cd25f74894e863f178ceb32, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128936152294941466, guid: 2567a93c5cd25f74894e863f178ceb32, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128936152294941466, guid: 2567a93c5cd25f74894e863f178ceb32, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128936152294941466, guid: 2567a93c5cd25f74894e863f178ceb32, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128936152294941466, guid: 2567a93c5cd25f74894e863f178ceb32, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128936152294941466, guid: 2567a93c5cd25f74894e863f178ceb32, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2567a93c5cd25f74894e863f178ceb32, type: 3}
 --- !u!1 &737554236
 GameObject:
   m_ObjectHideFlags: 0
@@ -24574,6 +24635,7 @@ Transform:
   - {fileID: 1851023432}
   - {fileID: 2144230848}
   - {fileID: 1746371516}
+  - {fileID: 1797640701}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -29355,6 +29417,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4205903404384609145, guid: f745ebe093878924db5766a1f9863f7a, type: 3}
   m_PrefabInstance: {fileID: 1746371515}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1797640701 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9128936152294941466, guid: 2567a93c5cd25f74894e863f178ceb32, type: 3}
+  m_PrefabInstance: {fileID: 721855292}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1808101628
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29661,7 +29728,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4233255633279471489, guid: bad57b07527a2e64eaf9bc8293f502df, type: 3}
       propertyPath: m_FlipX
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4233255633279471490, guid: bad57b07527a2e64eaf9bc8293f502df, type: 3}
       propertyPath: m_Name

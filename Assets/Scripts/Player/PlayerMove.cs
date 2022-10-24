@@ -63,30 +63,16 @@ public class PlayerMove : MonoBehaviour
         // #7. Landing Platform
         Debug.DrawRay(rigid.position, Vector3.down * 1.2f, new Color(0, 1, 0));
         RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, Vector3.down, 1.2f, LayerMask.GetMask("Platform"));
-        // rigid.gravityScale = 3.5f;
-
-        // rigid.gravityScale = rigid.velocity.y < 0 ? 3.5f : 1.5f;
 
         if (rayHit.collider != null && rayHit.distance < 0.75f) // 바닥을 감지
         {
-            // rigid.gravityScale = 1.5f;
             onGround = true;
             animator.SetBool("onGround", true);
-
-            if (rayHit.distance < 0.75f)
-            {
-
-            }
         }
         else // 공중에 있을 때
         {
             onGround = false;
             animator.SetBool("onGround", false);
-        }
-
-        if (rigid.velocity.y < 0)
-        {
-
         }
     }
 }

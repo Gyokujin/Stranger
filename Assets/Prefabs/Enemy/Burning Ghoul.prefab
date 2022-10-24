@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2085646663013784914}
   - component: {fileID: 7340291219176583011}
   - component: {fileID: 8588758584954150251}
+  - component: {fileID: 586228060}
   m_Layer: 0
   m_Name: Burning Ghoul
   m_TagString: Untagged
@@ -127,7 +128,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 7
+  m_Constraints: 4
 --- !u!61 &8588758584954150251
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -138,7 +139,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.019662589}
@@ -154,3 +155,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.22, y: 1.2824674}
   m_EdgeRadius: 0
+--- !u!114 &586228060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079358693223044686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11a2397e7146e774eb784a3a2bcafb9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextMove: -1
+  patternDelay: 5

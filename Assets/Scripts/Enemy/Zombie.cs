@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Zombie : Enemy
 {
+    void Awake()
+    {
+
+    }
+
     void Start()
     {
         

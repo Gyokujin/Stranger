@@ -1619,6 +1619,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2079358693223044672, guid: f215f8e56cb60b248b21ce1d1bedfca4, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2079358693223044672, guid: f215f8e56cb60b248b21ce1d1bedfca4, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2079358693223044672, guid: f215f8e56cb60b248b21ce1d1bedfca4, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2079358693223044686, guid: f215f8e56cb60b248b21ce1d1bedfca4, type: 3}
       propertyPath: m_Name
       value: Burning Ghoul
@@ -1629,11 +1641,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2079358693223044687, guid: f215f8e56cb60b248b21ce1d1bedfca4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.71
+      value: 7.99
       objectReference: {fileID: 0}
     - target: {fileID: 2079358693223044687, guid: f215f8e56cb60b248b21ce1d1bedfca4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.27
+      value: -2.15
       objectReference: {fileID: 0}
     - target: {fileID: 2079358693223044687, guid: f215f8e56cb60b248b21ce1d1bedfca4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1667,21 +1679,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4289633216753696944, guid: f215f8e56cb60b248b21ce1d1bedfca4, type: 3}
-      propertyPath: moveVec
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4289633216753696944, guid: f215f8e56cb60b248b21ce1d1bedfca4, type: 3}
-      propertyPath: moveTime
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4289633216753696944, guid: f215f8e56cb60b248b21ce1d1bedfca4, type: 3}
-      propertyPath: moveVec.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4289633216753696944, guid: f215f8e56cb60b248b21ce1d1bedfca4, type: 3}
-      propertyPath: patternDelay
-      value: 0
+    - target: {fileID: 7340291219176583011, guid: f215f8e56cb60b248b21ce1d1bedfca4, type: 3}
+      propertyPath: m_Constraints
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f215f8e56cb60b248b21ce1d1bedfca4, type: 3}

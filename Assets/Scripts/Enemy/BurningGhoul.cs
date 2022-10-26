@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BurningGhoul : Enemy
 {
-    [SerializeField]
+    private Vector2 moveDir;
     private float moveTime;
     private bool onChase;
 
@@ -20,84 +20,100 @@ public class BurningGhoul : Enemy
         collider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
 
-        // Move(moveVec, moveTime);
+        Think();
     }
 
-    void FixedUpdate()
+    void Update()
     {
-
+        Check();
     }
 
-    // #. 랜덤으로 이동 방향 설정
-    /*
-    IEnumerator Think()
+    // #1. 이동 방향, 이동 시간 설정
+    void Think()
     {
-        yield return new WaitForSeconds(patternDelay);
+        int dir = Random.Range(0, 2);
+        moveTime = Random.Range(3, 5);
 
-        int moveDir = Random.Range(0, 2);
-
-        switch (moveDir)
+        switch (dir)
         {
             case 0: // 왼쪽
-                base.moveVec = -1;
+                moveDir = Vector3.left;
+                spriteRenderer.flipX = false;
                 break;
+
             case 1: // 오른쪽
-                base.moveVec = 1;
+                moveDir = Vector3.right;
+                spriteRenderer.flipX = true;
                 break;
         }
-    }
-    */
 
-    // #1. Move
-    public void Move(float dir, float time)
+        StartCoroutine("Move");
+    }
+
+    // #2. 이동 명령
+    IEnumerator Move()
     {
-        while (time > 0)
+        while (moveTime > 0)
         {
-            time -= Time.deltaTime;
-            rigid.velocity = new Vector2(dir, rigid.velocity.y);
-            Debug.Log("이동중");
+            rigid.velocity = moveDir;
+            moveTime -= Time.deltaTime;
+            yield return null;
         }
-        Debug.Log("이동끝");
+
+        Think();
     }
 
-    /*
-    // #. Move
-        rigid.velocity = new Vector2(moveVec, rigid.velocity.y);
+    // #3. 바닥 및 전방의 플레이어 감지
+    void Check()
+    {
+        // #. 바닥 감지
+        Debug.DrawRay(rigid.position + moveDir, Vector3.down, Color.green);
+        RaycastHit2D platCheck = Physics2D.Raycast(rigid.position + moveDir, Vector3.down, 1, LayerMask.GetMask("Platform"));
 
-        // #. Platform Check
-        Vector2 frontVec = new Vector2(rigid.position.x + moveVec * 0.5f, rigid.position.y);
-        Debug.DrawRay(frontVec, Vector3.down, new Color(0, 1, 0));
-        RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector3.down, 1, LayerMask.GetMask("Platform"));
-
-        if (rayHit.collider == null)
+        if (platCheck.collider == null)
             Turn();
 
-    // #1. Set Direction
-    public void Think()
-    {
-        moveVec = Random.Range(-1, 2);
-
-        // #. Flip Sprite
-        if (moveVec != 0)
+        // #. 플레이어 감지
+        if (!onChase)
         {
-            spriteRenderer.flipX = moveVec == 1;
+            Debug.DrawRay(rigid.position, moveDir * 4, Color.red);
+            RaycastHit2D detectCheck = Physics2D.Raycast(rigid.position, moveDir, 4, LayerMask.GetMask("Player"));
+
+            if (detectCheck.collider != null)
+            {
+                StopCoroutine("Move");
+                StartCoroutine("Chase");
+            }
         }
-
-        // #. Sprite Animation
-        animator.SetInteger("WalkSpeed", moveVec);
-
-        // #. Recursive
-        Invoke("Think", patternDelay);
     }
 
-
-
-    // #3. Turn
+    // #4. 반대 방향으로 이동
     void Turn()
     {
-        moveVec *= -1;
-        StopAllCoroutines();
+        moveDir *= -1;
         spriteRenderer.flipX = !spriteRenderer.flipX;
     }
-    */
+
+    // #5. 플레이어 추적
+    IEnumerator Chase()
+    {
+        onChase = true;
+        collider.isTrigger = true;
+        animator.SetBool("onChase", true);
+        spriteRenderer.color = new Color(0.98f, 0.68f, 0.68f);
+        moveTime = 3.5f;
+
+        while (moveTime > 0)
+        {
+            rigid.velocity = moveDir * 2;
+            moveTime -= Time.deltaTime;
+            yield return null;
+        }
+
+        onChase = false;
+        collider.isTrigger = false;
+        animator.SetBool("onChase", false);
+        spriteRenderer.color = Color.white;
+        Think();
+    }
 }

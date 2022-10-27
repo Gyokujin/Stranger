@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Zombie : MonoBehaviour
+public class EliteZombie : MonoBehaviour
 {
     [SerializeField]
     private Vector2 sight;
@@ -33,8 +33,8 @@ public class Zombie : MonoBehaviour
     {
         if (!onAttack)
         {
-            Debug.DrawRay(rigid.position, sight * 1.4f, Color.red);
-            RaycastHit2D detectCheck = Physics2D.Raycast(rigid.position, sight, 1.4f, LayerMask.GetMask("Player"));
+            Debug.DrawRay(rigid.position, sight * 2f, Color.red);
+            RaycastHit2D detectCheck = Physics2D.Raycast(rigid.position, sight, 2f, LayerMask.GetMask("Player"));
 
             if (detectCheck.collider != null)
             {
@@ -49,12 +49,19 @@ public class Zombie : MonoBehaviour
         Debug.Log("АјАн");
         onAttack = true;
         animator.SetTrigger("doAttack");
+        rigid.AddForce(sight * 13f, ForceMode2D.Impulse);
+        rigid.constraints = RigidbodyConstraints2D.None;
+        collider.isTrigger = true;
         hitBox.SetActive(true);
-        
+
         yield return new WaitForSeconds(0.1f);
         hitBox.SetActive(false);
 
-        yield return new WaitForSeconds(2.4f);
+        yield return new WaitForSeconds(0.9f);
+        rigid.constraints = RigidbodyConstraints2D.FreezePositionX;
+        collider.isTrigger = false;
+
+        yield return new WaitForSeconds(1.0f);
         onAttack = false;
     }
 }

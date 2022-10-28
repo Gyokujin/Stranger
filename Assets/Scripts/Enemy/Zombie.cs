@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Zombie : MonoBehaviour
 {
-    [SerializeField]
-    private Vector2 sight;
     private bool onAttack;
     [SerializeField]
     private GameObject hitBox;
@@ -33,11 +31,19 @@ public class Zombie : MonoBehaviour
     {
         if (!onAttack)
         {
-            Debug.DrawRay(rigid.position, sight * 1.4f, Color.red);
-            RaycastHit2D detectCheck = Physics2D.Raycast(rigid.position, sight, 1.4f, LayerMask.GetMask("Player"));
+            Debug.DrawRay(rigid.position, Vector2.left * 1.4f, Color.red); // 좌측 시야
+            Debug.DrawRay(rigid.position, Vector2.right * 1.4f, Color.red); // 우측 시야
+            RaycastHit2D leftCheck = Physics2D.Raycast(rigid.position, Vector2.left, 1.4f, LayerMask.GetMask("Player"));
+            RaycastHit2D rightCheck = Physics2D.Raycast(rigid.position, Vector2.right, 1.4f, LayerMask.GetMask("Player"));
 
-            if (detectCheck.collider != null)
+            if (leftCheck.collider != null) // 좌측 감지
             {
+                gameObject.transform.localScale = new Vector3(1, 1, 1);
+                StartCoroutine("Attack");
+            }
+            else if (rightCheck.collider != null) // 우측 감지
+            {
+                gameObject.transform.localScale = new Vector3(-1, 1, 1);
                 StartCoroutine("Attack");
             }
         }
@@ -46,15 +52,17 @@ public class Zombie : MonoBehaviour
     // #2. 공격 실행
     IEnumerator Attack()
     {
-        Debug.Log("공격");
         onAttack = true;
+
+        yield return new WaitForSeconds(0.6f);
+        Debug.Log("공격");        
         animator.SetTrigger("doAttack");
         hitBox.SetActive(true);
         
         yield return new WaitForSeconds(0.1f);
         hitBox.SetActive(false);
 
-        yield return new WaitForSeconds(2.4f);
+        yield return new WaitForSeconds(1.4f);
         onAttack = false;
     }
 }

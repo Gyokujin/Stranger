@@ -75,4 +75,15 @@ public class PlayerMove : MonoBehaviour
             animator.SetBool("onGround", false);
         }
     }
+
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Object"))
+        {
+            if(Input.GetButtonDown("Interaction"))
+            {
+
+            }
+        }
+    }
 }

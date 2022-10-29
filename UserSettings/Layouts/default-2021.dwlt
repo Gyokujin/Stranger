@@ -121,7 +121,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 107
+  controlID: 119
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 112
+  controlID: 124
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -174,7 +174,7 @@ MonoBehaviour:
   - {fileID: 14}
   - {fileID: 15}
   m_Selected: 0
-  m_LastSelected: 1
+  m_LastSelected: 0
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -194,8 +194,8 @@ MonoBehaviour:
     y: 486
     width: 1133
     height: 461
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 12}
@@ -273,8 +273,8 @@ MonoBehaviour:
     y: 0
     width: 280
     height: 947
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -619,9 +619,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 67.87851, y: -2.295448, z: -0.10108521}
+    m_Target: {x: 0.6280164, y: -2.4661224, z: 0.2869041}
     speed: 2
-    m_Value: {x: 68.08296, y: -2.1953528, z: -0.09173585}
+    m_Value: {x: 0.6280164, y: -2.4661224, z: 0.2869041}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -672,9 +672,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 21.711218
+    m_Target: 2.1187575
     speed: 2
-    m_Value: 20.776285
+    m_Value: 2.1187575
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -734,6 +734,7 @@ MonoBehaviour:
     - {fileID: 1788305368606806288, guid: 15668ee19e20a7e4bb22ea116874e489, type: 2}
     - {fileID: -3829765405524497116, guid: 0a074e862005ae148a17dbe4c554cb78, type: 2}
     - {fileID: -4318224155033396118, guid: e19152a68e685454e8e1543ae5e2309c, type: 2}
+    - {fileID: -3229373751385259525, guid: 5280563696118534c8d03de436095fed, type: 2}
     m_ValueSerializationHelper:
     - e00: 0.5119069
       e01: 0
@@ -791,6 +792,22 @@ MonoBehaviour:
       e11: 0.8557895
       e12: 0
       e13: 140.2579
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
       e20: 0
       e21: 0
       e22: 1
@@ -918,9 +935,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: c45e0000
-      m_LastClickedID: 24260
-      m_ExpandedIDs: 628bffff84b9ffffc8f8ffffdaf8ffffaef9ffff28fbffffbe5e0000
+      m_SelectedIDs: c25e0000
+      m_LastClickedID: 24258
+      m_ExpandedIDs: e2eaffff28fbffff805e0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -985,22 +1002,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/Enemy
+    - Assets/Prefabs/Level
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 52
   m_LastFolders:
-  - Assets/Prefabs/Enemy
+  - Assets/Prefabs/Level
   m_LastFoldersGridSize: 52
   m_LastProjectPath: D:\Work\Unity\Proceeding\Project_R
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 58610000
-    m_LastClickedID: 24920
-    m_ExpandedIDs: 000000004c6100004e610000506100005e61000000ca9a3b
+    m_SelectedIDs: 56610000
+    m_LastClickedID: 24918
+    m_ExpandedIDs: 00000000486100004a6100004c6100005a61000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1028,7 +1045,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000004c6100004e61000050610000
+    m_ExpandedIDs: 00000000486100004a6100004c610000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

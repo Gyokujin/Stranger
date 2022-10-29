@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6043290210473429697}
   - component: {fileID: 6043290210473429696}
   - component: {fileID: 941685140481966921}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TreasureBox
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

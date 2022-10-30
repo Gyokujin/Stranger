@@ -1092,7 +1092,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9088728905147029786, guid: 1cfa51a661458d84182dea7a4662f2fa, type: 3}
       propertyPath: m_Name
-      value: PortalRings
+      value: PortalRing
       objectReference: {fileID: 0}
     - target: {fileID: 9088728905147029787, guid: 1cfa51a661458d84182dea7a4662f2fa, type: 3}
       propertyPath: m_RootOrder
@@ -1140,6 +1140,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cfa51a661458d84182dea7a4662f2fa, type: 3}
+--- !u!1 &489749808 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9088728905147029786, guid: 1cfa51a661458d84182dea7a4662f2fa, type: 3}
+  m_PrefabInstance: {fileID: 489749807}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &489749809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489749808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3682d16d52aef464caadb99f43e1e45c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &502640365
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1295,7 +1312,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9088728905147029786, guid: 1cfa51a661458d84182dea7a4662f2fa, type: 3}
       propertyPath: m_Name
-      value: PortalRingsA
+      value: PortalRingA
       objectReference: {fileID: 0}
     - target: {fileID: 9088728905147029787, guid: 1cfa51a661458d84182dea7a4662f2fa, type: 3}
       propertyPath: m_RootOrder
@@ -24065,7 +24082,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9088728905147029786, guid: 1cfa51a661458d84182dea7a4662f2fa, type: 3}
       propertyPath: m_Name
-      value: PortalRingsB
+      value: PortalRingB
       objectReference: {fileID: 0}
     - target: {fileID: 9088728905147029787, guid: 1cfa51a661458d84182dea7a4662f2fa, type: 3}
       propertyPath: m_RootOrder

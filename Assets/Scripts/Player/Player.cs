@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [SerializeField]
     private float maxSpeed;
@@ -76,13 +76,25 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    // #8. 오브젝트 상호작용
     void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Object"))
         {
             if(Input.GetButtonDown("Interaction"))
             {
+                Object.ObjectType objectType = collision.gameObject.GetComponent<Object>().objectType;
 
+                switch (objectType)
+                {
+                    case Object.ObjectType.TreasureBox:
+                        collision.gameObject.GetComponent<TreasureBox>().Spawn();
+                        break;
+
+                    case Object.ObjectType.PortalRing:
+                        collision.gameObject.GetComponent<Portal>().Teleport(gameObject);
+                        break;
+                }
             }
         }
     }

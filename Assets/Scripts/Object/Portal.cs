@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class Portal : Object
 {
-    void Start()
-    {
-        
-    }
+    public GameObject targetPortal;
 
-    void Update()
+    public void Teleport(GameObject player)
     {
-        
+        player.transform.position = targetPortal.transform.position;
     }
 }

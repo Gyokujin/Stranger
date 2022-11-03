@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6043290210473429697}
   - component: {fileID: 6043290210473429696}
   - component: {fileID: 941685140481966921}
+  - component: {fileID: 842002042484517164}
   m_Layer: 8
   m_Name: TreasureBox
   m_TagString: Object
@@ -111,3 +112,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5625, y: 0.375}
   m_EdgeRadius: 0
+--- !u!114 &842002042484517164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6043290210473429698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920f13c234a54da4e89b4dcff79826d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

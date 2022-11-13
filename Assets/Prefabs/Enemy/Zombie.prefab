@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6323941062932272258}
   - component: {fileID: 3923379959223798075}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HitBox
-  m_TagString: Untagged
+  m_TagString: HitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72,9 +72,9 @@ GameObject:
   - component: {fileID: 7149318806708312301}
   - component: {fileID: 7192018223460195144}
   - component: {fileID: 9029617514773860462}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Zombie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

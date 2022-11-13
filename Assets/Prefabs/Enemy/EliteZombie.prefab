@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: -6747848832265322455}
   - component: {fileID: 1050359377916288773}
   - component: {fileID: 3338490001886053203}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EliteZombie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -179,9 +179,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1776512836464637967}
   - component: {fileID: 2915233110843150049}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HitBox
-  m_TagString: Untagged
+  m_TagString: HitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

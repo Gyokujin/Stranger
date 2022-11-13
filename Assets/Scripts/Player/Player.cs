@@ -50,17 +50,17 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        // #1. Move Speed
+        // #1. 이동 입력
         float h = Input.GetAxisRaw("Horizontal");
         rigid.AddForce(Vector2.right * h, ForceMode2D.Impulse);
 
-        // #2. Max Speed
+        // #2. 속도 제한
         if (rigid.velocity.x > maxSpeed) // Right Max Speed
             rigid.velocity = new Vector2(maxSpeed, rigid.velocity.y);
         else if (rigid.velocity.x < -maxSpeed) // Left Max Speed
             rigid.velocity = new Vector2(-maxSpeed, rigid.velocity.y);
 
-        // #7. Landing Platform
+        // #7. 바닥 착지
         Debug.DrawRay(rigid.position, Vector3.down * 1.2f, new Color(0, 1, 0));
         RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, Vector3.down, 1.2f, LayerMask.GetMask("Platform"));
 
@@ -76,9 +76,18 @@ public class Player : MonoBehaviour
         }
     }
 
-    // #8. 오브젝트 상호작용
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // #8. 몬스터 피격
+        if (collision.gameObject.CompareTag("HitBox"))
+        {
+            OnDamaged(collision.transform.position);
+        }
+    }
+    
     void OnTriggerStay2D(Collider2D collision)
     {
+        // #9. 오브젝트 상호작용
         if (collision.gameObject.CompareTag("Object"))
         {
             if(Input.GetButtonDown("Interaction"))
@@ -97,5 +106,29 @@ public class Player : MonoBehaviour
                 }
             }
         }
+    }
+
+    // #10. 피격 처리
+    void OnDamaged(Vector2 targetPos)
+    {
+        // #. 레이어 변경 (Invincibility)
+        gameObject.layer = 9;
+
+        // #. 컬러 변경
+        spriteRenderer.color = new Color(1, 1, 1, 0.6f);
+
+        // #. 넉백
+        int dirc = transform.position.x - targetPos.x > 0 ? 1 : -1;
+        rigid.AddForce(new Vector2(dirc, 1) * 5, ForceMode2D.Impulse);
+
+        // #. 피격 해제 실행
+        Invoke("OffDamaged", 2);
+    }
+
+    // #11. 피격 해제
+    void OffDamaged()
+    {
+        gameObject.layer = 3;
+        spriteRenderer.color = new Color(1, 1, 1, 1);
     }
 }

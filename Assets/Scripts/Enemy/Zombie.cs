@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Zombie : MonoBehaviour
+public class Zombie : Enemy
 {
     private bool onAttack;
     [SerializeField]
@@ -29,7 +29,7 @@ public class Zombie : MonoBehaviour
     // #1. 플레이어 감지
     void Check()
     {
-        if (!onAttack)
+        if (!onAttack && !onDamage && !onDie)
         {
             Debug.DrawRay(rigid.position, Vector2.left * 1.4f, Color.red); // 좌측 시야
             Debug.DrawRay(rigid.position, Vector2.right * 1.4f, Color.red); // 우측 시야
@@ -55,7 +55,6 @@ public class Zombie : MonoBehaviour
         onAttack = true;
 
         yield return new WaitForSeconds(0.6f);
-        Debug.Log("공격");        
         animator.SetTrigger("doAttack");
         hitBox.SetActive(true);
         
@@ -64,5 +63,44 @@ public class Zombie : MonoBehaviour
 
         yield return new WaitForSeconds(1.4f);
         onAttack = false;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("PlayerHitBox"))
+        {
+            if (!onDamage)
+            {
+                float damage = collision.gameObject.GetComponentInParent<Player>().playerATK;
+                StartCoroutine("DamageProcess", damage);
+            }
+        }
+    }
+
+    IEnumerator DamageProcess(float amount)
+    {
+        onDamage = true;
+        hp -= amount;
+        spriteRenderer.color = new Color(1, 1, 1, 0.4f);
+
+        if (hp <= 0)
+        {
+            onDie = true;
+            StartCoroutine("DieProcess");
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.1f);
+            onDamage = false;
+
+            yield return new WaitForSeconds(1);
+            spriteRenderer.color = new Color(1, 1, 1, 1);
+        }
+    }
+
+    IEnumerator DieProcess()
+    {
+        yield return new WaitForSeconds(1.0f);
+        gameObject.SetActive(false);
     }
 }

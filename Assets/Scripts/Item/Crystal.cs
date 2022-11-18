@@ -12,7 +12,7 @@ public class Crystal : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             GameManager.instance.Increase("crystal", crystalPoint);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

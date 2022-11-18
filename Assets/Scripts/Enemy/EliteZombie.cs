@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EliteZombie : MonoBehaviour
+public class EliteZombie : Enemy
 {
     private bool onAttack;
     private bool onChase;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BurningGhoul : MonoBehaviour
+public class BurningGhoul : Enemy
 {
     private Vector2 moveDir;
     private float moveTime;

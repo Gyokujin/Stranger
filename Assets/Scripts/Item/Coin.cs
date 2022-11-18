@@ -12,7 +12,7 @@ public class Coin : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             GameManager.instance.Increase("gold", goldPoint);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

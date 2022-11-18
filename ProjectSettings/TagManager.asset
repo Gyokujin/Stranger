@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Object
   - HitBox
+  - EventTrigger
+  - PlayerHitBox
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - Enemy
   - Object
   - Invincibility
-  - 
+  - Wall
   - 
   - 
   - 

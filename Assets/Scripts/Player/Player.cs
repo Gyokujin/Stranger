@@ -6,34 +6,61 @@ public class Player : MonoBehaviour
 {
     public static Player instance = null;
 
+    [Header("Status")]
     [Range(0, 100)]
     public float playerHP;
     [Range(0, 10)]
     public float playerATK;
+    [SerializeField][Range(0, 10)]
+    private float runSpeed = 3;
+    [SerializeField][Range(0, 12)]
+    private float jumpForce;
 
-    public Transform wallCheck;
-    public float wallCheckDistance;
-    public LayerMask wallLayer;
-
-    [SerializeField][Range(0, 25)]
-    private float speed;
-    [SerializeField][Range(10, 15)]
-    private float jumpPower;
-    public float slidingSpeed;
-
-    public int comboCount;
+    [Header("Move")]
     [SerializeField]
-    private GameObject hitBox;
-
+    private int jumpCount;
+    private int jumpCnt;
+    private bool onMove;
     private bool onGround;
     [SerializeField]
-    private bool isWall;
+    private float checkDistance;
+    private float inputX;
+    private float isRight = 1; // 바라보는 방향 1 = 오른쪽, -1 = 왼쪽
+    [SerializeField]
+    private float slidingSpeed;
+    [SerializeField]
+    private float wallJumpPower;
+    private bool isWallJump;
+
+    [Header("Action")]
+    [SerializeField]
+    private int atkCount;
+    private int atkCnt;
+    [SerializeField]
+    private GameObject attackBox;
     private bool onAttack;
     private bool onDamaged;
     private bool onDie;
 
-    private Rigidbody2D rigid;
+    [Header("Physics")]
+    [SerializeField]
+    private Transform groundCheckFront; // 바닥 체크 position
+    [SerializeField]
+    private Transform groundCheckBack; // 바닥 체크 position
+    [SerializeField]
+    private bool isWall;
+    [SerializeField]
+    private Transform wallCheck;
+    [SerializeField]
+    private float wallCheckDistance;
+    [SerializeField]
+    private LayerMask groundLayer;
+    [SerializeField]
+    private LayerMask wallLayer;
+
+    [Header("Component")]
     private SpriteRenderer spriteRenderer;
+    private Rigidbody2D rigid;
     private Animator animator;
 
     void Awake()
@@ -49,164 +76,156 @@ public class Player : MonoBehaviour
                 Destroy(this.gameObject);
         }
 
-        rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+    }
+
+    void Start()
+    {
+        jumpCnt = jumpCount;
+        atkCnt = atkCount;
     }
 
     void Update()
     {
-        if (onDamaged || onDie || onAttack)
-            return;
-
-        // #. Stop Speed
-        if (Input.GetButtonUp("Horizontal"))
-        {
-            rigid.velocity = new Vector2(0, rigid.velocity.y);
-        }
-
-        // #. Direction Sprite
-        if (Input.GetButton("Horizontal"))
-            spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
-
-        // #. Jump
-        if (Input.GetButtonDown("Jump") && onGround)
-        {
-            onGround = false;
-            rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-            animator.SetTrigger("doJump");
-        }
-
-        // #. Attack
-        if (Input.GetMouseButtonDown(0) && onGround && comboCount == 0)
-        {
-            onAttack = true;
-            StartCoroutine("Attack");
-        }
-
-        // #. Animation
-        if (Mathf.Abs(rigid.velocity.x) > 0.3f)
-            animator.SetBool("onMove", true);
-        else
-            animator.SetBool("onMove", false);
+        GetInput();
+        Jump();
+        Sliding();
     }
 
     void FixedUpdate()
     {
-        // #1. 이동 입력
-        if (!onDamaged && !onDie && !onAttack)
+        Move();
+    }
+
+    void GetInput()
+    {
+        inputX = Input.GetAxisRaw("Horizontal");
+
+        if (Input.GetMouseButtonDown(0) && atkCount > 0 && !onMove && onGround && !onDamaged && !onDie)
         {
-            float h = Input.GetAxisRaw("Horizontal");
-            rigid.AddForce(Vector2.right * h * speed * Time.deltaTime, ForceMode2D.Impulse);
+            Attack();
         }
+    }
 
-        // #. 바닥 착지
-        Debug.DrawRay(rigid.position, Vector3.down * 1.2f, new Color(0, 1, 0));
-        RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, Vector3.down, 1.2f, LayerMask.GetMask("Platform"));
+    void Move()
+    {
+        if (onAttack || onDamaged || onDie || isWallJump)
+            return;
 
-        if (rayHit.collider != null && rayHit.distance < 1.0f) // 바닥을 감지
+        // #. 캐릭터 이동
+        rigid.velocity = new Vector2((inputX) * runSpeed, rigid.velocity.y);
+        onMove = rigid.velocity.x != 0 ? true : false;
+
+        // #. 캐릭터의 앞쪽과 뒤쪽의 바닥 체크를 진행
+        bool groundFront = Physics2D.Raycast(groundCheckFront.position, Vector2.down, checkDistance, groundLayer);
+        bool groundBack = Physics2D.Raycast(groundCheckBack.position, Vector2.down, checkDistance, groundLayer);
+
+        // #. 점프 상태에서 앞 또는 뒤쪽에 바닥이 감지되면 바닥에 붙어서 이동하도록 변경
+        if (!onGround && (groundFront || groundBack))
+            rigid.velocity = new Vector2(rigid.velocity.x, 0);
+
+        // #. 앞 또는 뒤쪽의 바닥이 감지되면 isGround를 참으로
+        if (groundFront || groundBack)
         {
             onGround = true;
-            rigid.mass = 1;
-            animator.SetBool("onGround", true);
+            jumpCnt = jumpCount;
         }
-        else // 공중에 있을 때
-        {
+        else
             onGround = false;
-            rigid.mass = 1.75f;
-            animator.SetBool("onGround", false);
 
-            isWall = Physics2D.Raycast(wallCheck.position, spriteRenderer.flipX == true ? Vector2.left : Vector2.right, wallCheckDistance, wallLayer);
-            // animator.SetBool("isSliding", isWall);
-        }
+        animator.SetBool("onGround", onGround);
 
-        // #. 벽 타기
-        if (isWall)
+        if (inputX != 0 && !isWallJump)
         {
-            rigid.velocity = new Vector2(rigid.velocity.x, rigid.velocity.y * slidingSpeed);
-        
-            if (Input.GetButtonDown("Jump"))
+            // #. 방향키가 눌리는 방향과 캐릭터가 바라보는 방향이 다르면 캐릭터의 방향을 전환
+            if ((inputX > 0 && isRight < 0) || (inputX < 0 && isRight > 0))
             {
-                Debug.Log("점프");
-                rigid.AddForce(Vector2.up * jumpPower * 0.7f);
+                FlipPlayer();
             }
+
+            animator.SetBool("onMove", true);
+        }
+        else
+        {
+            animator.SetBool("onMove", false);
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void Jump()
     {
-        // #8. 몬스터 피격
-        if (collision.gameObject.CompareTag("HitBox"))
+        if (Input.GetButtonDown("Jump") && jumpCnt > 0 && !onAttack && !onDamaged && !onDie)
         {
-            OnDamaged(collision.transform.position, collision.gameObject.GetComponentInParent<Enemy>().atk);
+            // #. 캐릭터 점프
+            rigid.velocity = Vector2.up * jumpForce;
+            animator.SetTrigger("doJump");
+        }
+        if (Input.GetButtonUp("Jump"))
+        {
+            jumpCnt--;
         }
     }
-    
-    void OnTriggerStay2D(Collider2D collision)
+
+    void Sliding()
     {
-        // #. 오브젝트 상호작용
-        if (collision.gameObject.CompareTag("Object"))
+        if (!onGround)
         {
-            if(Input.GetButtonDown("Interaction"))
+            isWall = Physics2D.Raycast(wallCheck.position, Vector2.right * isRight, wallCheckDistance, wallLayer);
+            animator.SetBool("onSliding", isWall);
+
+            if (isWall)
             {
-                Object.ObjectType objectType = collision.gameObject.GetComponent<Object>().objectType;
+                rigid.velocity = new Vector2(rigid.velocity.x, rigid.velocity.y * slidingSpeed);
+                isWallJump = false;
 
-                switch (objectType)
+                if (Input.GetButtonDown("Jump"))
                 {
-                    case Object.ObjectType.TreasureBox:
-                        collision.gameObject.GetComponent<TreasureBox>().Spawn();
-                        break;
-
-                    case Object.ObjectType.PortalRing:
-                        collision.gameObject.GetComponent<Portal>().Teleport(gameObject);
-                        break;
+                    isWallJump = true;
+                    animator.SetTrigger("doJump");
+                    Invoke("FreezeX", 0.3f);
+                    rigid.velocity = new Vector2(-isRight * wallJumpPower, 0.9f * wallJumpPower);
+                    FlipPlayer();
                 }
             }
         }
-    }
-
-    // #. 공격
-    IEnumerator Attack()
-    {
-        comboCount++;
-        hitBox.transform.localScale = spriteRenderer.flipX ? new Vector3(-1, 1, 1) : new Vector3(1, 1, 1);
-        animator.SetTrigger("doAttack");
-
-        yield return new WaitForSeconds(1.3f);
-        onAttack = false;
-        comboCount = 0;
-    }
-
-    IEnumerator ComboActivation()
-    {
-        while (comboCount == 1)
+        else
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                hitBox.SetActive(false);
-                StopCoroutine("Attack");
-                StartCoroutine("Attack");
-            }
-
-            yield return null;
+            animator.SetBool("onSliding", false);
         }
+    }
+
+    void Attack()
+    {
+        onAttack = true;
+        atkCnt--;
+        animator.SetTrigger("doAttack");
+    }
+
+    void OffAttack()
+    {
+        onAttack = false;
+        atkCnt = atkCount;
     }
 
     IEnumerator OnHitBox()
     {
-        hitBox.SetActive(true);
+        attackBox.SetActive(true);
 
         yield return new WaitForSeconds(0.1f);
-        hitBox.SetActive(false);
+        attackBox.SetActive(false);
     }
 
     // #. 피격 처리
     public void OnDamaged(Vector2 targetPos, float damage)
     {
+        if (onDamaged)
+            return;
+
         playerHP -= damage;
 
         if (playerHP <= 0)
-            OnDie();
+            Die();
         else
         {
             onDamaged = true;
@@ -220,7 +239,7 @@ public class Player : MonoBehaviour
 
             // #. 넉백
             int dirc = transform.position.x - targetPos.x > 0 ? 1 : -1;
-            rigid.AddForce(new Vector2(dirc, 0) * 3, ForceMode2D.Impulse);
+            rigid.AddForce(new Vector2(dirc, 0) * 2, ForceMode2D.Impulse);
             animator.SetTrigger("doDamaged");
 
             // #. 피격 해제 실행
@@ -228,23 +247,57 @@ public class Player : MonoBehaviour
         }
     }
 
-    // #. 피격 해제
     IEnumerator OffDamaged()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         onDamaged = false;
 
         yield return new WaitForSeconds(1f);
         gameObject.layer = 3;
         spriteRenderer.color = new Color(1, 1, 1, 1);
+
+        // 공격중 피격 버그에 대한 버그 방지
+        if (onAttack)
+            OffAttack();
     }
 
-    void OnDie()
+    void Die()
     {
         onDie = true;
         gameObject.layer = 9;
         animator.SetTrigger("doDie");
 
         GameManager.instance.GameOver();
+    }
+
+    void FlipPlayer()
+    {
+        // #. 방향을 전환
+        transform.eulerAngles = new Vector3(0, Mathf.Abs(transform.eulerAngles.y - 180), 0);
+        isRight *= -1;
+    }
+
+    void FreezeX()
+    {
+        isWallJump = false;
+    }
+
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("HitBox"))
+        {
+            OnDamaged(collision.transform.position, collision.gameObject.GetComponentInParent<Enemy>().atk);
+        }
+    }
+
+    // #. 바닥 체크 Ray를 씬화면에 표시
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(groundCheckFront.position, Vector2.down * checkDistance);
+        Gizmos.DrawRay(groundCheckBack.position, Vector2.down * checkDistance);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawRay(wallCheck.position, Vector2.right * isRight * wallCheckDistance);
     }
 }

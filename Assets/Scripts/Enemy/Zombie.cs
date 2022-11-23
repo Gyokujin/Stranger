@@ -65,15 +65,12 @@ public class Zombie : Enemy
         onAttack = false;
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("PlayerHitBox"))
         {
-            if (!onDamage)
-            {
-                float damage = collision.gameObject.GetComponentInParent<Player>().playerATK;
-                StartCoroutine("DamageProcess", damage);
-            }
+            float damage = collision.gameObject.GetComponentInParent<Player>().playerATK;
+            StartCoroutine("DamageProcess", damage);
         }
     }
 

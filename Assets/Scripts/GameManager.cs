@@ -26,8 +26,6 @@ public class GameManager : MonoBehaviour
             if (instance != this)
                 Destroy(this.gameObject);
         }
-
-        Player.instance.playerHP = 100;
     }
 
     public void Increase(string type, int amount)
@@ -49,7 +47,6 @@ public class GameManager : MonoBehaviour
         switch (type)
         {
             case "Recovery":
-
                 break;
 
             case "Damage":

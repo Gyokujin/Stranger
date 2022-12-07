@@ -6,8 +6,8 @@ public class Portal : Object
 {
     public GameObject targetPortal;
 
-    public void Teleport(GameObject player)
+    public void Teleport(GameObject target)
     {
-        player.transform.position = targetPortal.transform.position;
+        target.transform.position = targetPortal.transform.position;
     }
 }

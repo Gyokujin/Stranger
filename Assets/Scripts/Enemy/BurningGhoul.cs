@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BurningGhoul : Enemy
 {
+    /*
     private Vector2 moveDir;
     private float moveTime;
     private bool onChase;
@@ -116,4 +117,5 @@ public class BurningGhoul : Enemy
         spriteRenderer.color = Color.white;
         Think();
     }
+    */
 }

@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 4205903404384609031}
   - component: {fileID: 7149318806708312301}
   - component: {fileID: 7192018223460195144}
-  - component: {fileID: 9029617514773860462}
+  - component: {fileID: 1348590558}
   m_Layer: 7
   m_Name: Zombie
   m_TagString: Enemy
@@ -92,6 +92,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6323941062932272258}
+  - {fileID: 2111446901202779665}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -198,7 +199,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.016241074}
@@ -214,7 +215,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8445279, y: 0.96751785}
   m_EdgeRadius: 0
---- !u!114 &9029617514773860462
+--- !u!114 &1348590558
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -226,7 +227,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a482c28f5ef4fd49b51f054a82416fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atk: 10
-  hp: 5
+  atk: 5
+  hp: 3
+  frontSight: 1
+  atkTakeTime: 1
+  atkDelay: 1
+  sightDir: 0
+  onDetect: 0
+  onAttack: 0
   onDamage: 0
+  onDie: 0
   hitBox: {fileID: 3220302048307517901}
+  backSight: {fileID: 4415068894748807918}
+--- !u!1 &4415068894748807918
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2111446901202779665}
+  m_Layer: 7
+  m_Name: BackSight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2111446901202779665
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4415068894748807918}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.426, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4205903404384609145}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class EliteZombie : Enemy
 {
-    private bool onAttack;
+    [Header("Action")]
     private bool onChase;
-    private Vector2 attackDir;
     [SerializeField]
     private GameObject hitBox;
+    [SerializeField]
+    private GameObject backSight;
 
+    [Header("Component")]
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rigid;
     private BoxCollider2D collider;
@@ -25,89 +27,55 @@ public class EliteZombie : Enemy
 
     void Update()
     {
-        Check();
+        base.Detect();
+
+        if (!onAttack && onDetect && !onDie)
+        {
+            DistanceCalculate();
+        }
     }
 
-    // #1. 플레이어 감지
-    void Check()
+    // #1. 공격거리 확인
+    void DistanceCalculate()
     {
-        if (!onAttack)
+        RaycastHit2D meleeCheck = Physics2D.Raycast(transform.position, Vector2.left * (-sightDir), 0.5f, LayerMask.GetMask("Player")); // 전방 확인
+        RaycastHit2D platCheck = Physics2D.Raycast(rigid.position + Vector2.left * (-sightDir) * 0.4f, Vector3.down, 1, LayerMask.GetMask("Platform")); // 바닥 확인
+
+        if (meleeCheck || !platCheck)
         {
-            Debug.DrawRay(rigid.position, Vector2.left * 3.5f, Color.red); // 좌측 시야
-            Debug.DrawRay(rigid.position, Vector2.right * 3.5f, Color.red); // 우측 시야
-            RaycastHit2D leftCheck = Physics2D.Raycast(rigid.position, Vector2.left, 3.5f, LayerMask.GetMask("Player"));
-            RaycastHit2D rightCheck= Physics2D.Raycast(rigid.position, Vector2.right, 3.5f, LayerMask.GetMask("Player"));
-
-            if (leftCheck.collider != null) // 좌측 감지
-            {
-                attackDir = Vector2.left;
-                gameObject.transform.localScale = new Vector3(1, 1, 1);
-                Debug.DrawRay(rigid.position + Vector2.left * 0.4f, Vector3.down, Color.green);
-                RaycastHit2D platCheck = Physics2D.Raycast(rigid.position + Vector2.left * 0.4f, Vector3.down, 1, LayerMask.GetMask("Platform"));
-
-                if (platCheck.collider == null)
-                    StartCoroutine("Attack");
-                else
-                    StartCoroutine("Chase", Vector2.left);
-            }
-            else if (rightCheck.collider != null) // 우측 감지
-            {
-                attackDir = Vector2.right;
-                gameObject.transform.localScale = new Vector3(-1, 1, 1);
-                Debug.DrawRay(rigid.position + Vector2.right * 0.4f, Vector3.down, Color.green);
-                RaycastHit2D platCheck = Physics2D.Raycast(rigid.position + Vector2.right * 0.4f, Vector3.down, 1, LayerMask.GetMask("Platform"));
-
-                if (platCheck.collider == null)
-                    StartCoroutine("Attack");
-                else
-                    StartCoroutine("Chase", Vector2.right);
-            }
+            StartCoroutine("MeleeAttack");
         }
-
-        // #. 공격중 바닥 감지
-        else if (onChase)
+        else
         {
-            Debug.DrawRay(rigid.position + attackDir * 0.4f, Vector3.down, Color.green);
-            RaycastHit2D platCheck = Physics2D.Raycast(rigid.position + attackDir * 0.4f, Vector3.down, 1, LayerMask.GetMask("Platform"));
-
-            if (platCheck.collider == null)
-            {
-                StopCoroutine("Chase");
-                rigid.velocity *= 0;
-                onChase = false;
-                onAttack = false;
-                hitBox.SetActive(false);
-                collider.isTrigger = false;
-                rigid.constraints = RigidbodyConstraints2D.FreezeAll;
-            }
+            StartCoroutine("ChaseAttack");
         }
     }
 
     // #2. 근접 공격 실행
-    IEnumerator Attack()
+    IEnumerator MeleeAttack()
     {
         onAttack = true;
 
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(atkTakeTime);
         animator.SetTrigger("doAttack");
         hitBox.SetActive(true);
 
         yield return new WaitForSeconds(0.1f);
         hitBox.SetActive(false);
 
-        yield return new WaitForSeconds(1.4f);
+        yield return new WaitForSeconds(atkDelay);
         onAttack = false;
     }
 
     // #3. 돌진 공격 실행
-    IEnumerator Chase(Vector2 dir)
+    IEnumerator ChaseAttack()
     {
         onAttack = true;
         onChase = true;
 
-        yield return new WaitForSeconds(1.0f);
-        Debug.Log("공격");        
-        rigid.AddForce(dir * 10f, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(atkTakeTime);
+        StartCoroutine("PlatCheck");
+        rigid.AddForce(Vector2.left * (-sightDir) * 7.5f, ForceMode2D.Impulse);
         rigid.constraints = RigidbodyConstraints2D.FreezePositionY;
         collider.isTrigger = true;
 
@@ -125,7 +93,83 @@ public class EliteZombie : Enemy
         yield return new WaitForSeconds(0.8f);
         onChase = false;
 
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(atkDelay);
         onAttack = false;
+    }
+
+
+    // #. 공격중 바닥 감지
+    IEnumerator PlatCheck()
+    {
+        while (onChase)
+        {
+            RaycastHit2D platCheck = Physics2D.Raycast(rigid.position + Vector2.left * (-sightDir) * 0.4f, Vector3.down, 1, LayerMask.GetMask("Platform"));
+            
+            if (platCheck.collider == null) // 돌진 공격중 바닥이 감지되면 공격 중지
+            {
+                StopCoroutine("ChaseAttack");
+                rigid.velocity *= 0;
+                hitBox.SetActive(false);
+                collider.isTrigger = false;
+                rigid.constraints = RigidbodyConstraints2D.FreezeAll;
+                onChase = false;
+                onAttack = false;
+            }
+
+            yield return null;
+        }
+    }
+
+    // #4. 피격 처리
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (onDie)
+            return;
+
+        if (collision.gameObject.CompareTag("PlayerHitBox"))
+        {
+            float damage = collision.gameObject.GetComponentInParent<Player>().playerATK;
+            DamageProcess(damage);
+        }
+    }
+
+    void DamageProcess(float damage)
+    {
+        hp -= damage;
+
+        if (hp <= 0)
+        {
+            onDie = true;
+            StartCoroutine("DieProcess");
+        }
+        else
+        {
+            BackCheck();
+        }
+    }
+
+    // #5. 죽음 처리
+    IEnumerator DieProcess()
+    {
+        StopCoroutine("MeleeAttack");
+        StopCoroutine("ChaseAttack");
+        collider.isTrigger = true;
+        spriteRenderer.color = new Color(1, 1, 1, 0.3f);
+
+        yield return new WaitForSeconds(2.0f);
+        gameObject.SetActive(false);
+    }
+
+    // #6. 후방 확인
+    void BackCheck()
+    {
+        Debug.DrawRay(backSight.transform.position, Vector2.left * sightDir, Color.blue);
+        RaycastHit2D backCheck = Physics2D.Raycast(backSight.transform.position, Vector2.left * sightDir, 1, LayerMask.GetMask("Player"));
+
+        if (backCheck)
+        {
+            sightDir *= -1;
+            transform.localScale = new Vector3(transform.localScale.x * -1, 1, 1);
+        }
     }
 }

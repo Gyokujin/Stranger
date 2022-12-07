@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Zombie : Enemy
 {
-    private bool onAttack;
+    [Header("Action")]
     [SerializeField]
     private GameObject hitBox;
+    [SerializeField]
+    private GameObject backSight;
 
+    [Header("Component")]
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rigid;
     private BoxCollider2D collider;
@@ -23,62 +26,46 @@ public class Zombie : Enemy
 
     void Update()
     {
-        Check();
-    }
+        base.Detect();
 
-    // #1. 플레이어 감지
-    void Check()
-    {
-        if (!onAttack && !onDamage && !onDie)
+        if (!onAttack && onDetect && !onDie)
         {
-            Debug.DrawRay(rigid.position, Vector2.left * 1.4f, Color.red); // 좌측 시야
-            Debug.DrawRay(rigid.position, Vector2.right * 1.4f, Color.red); // 우측 시야
-            RaycastHit2D leftCheck = Physics2D.Raycast(rigid.position, Vector2.left, 1.4f, LayerMask.GetMask("Player"));
-            RaycastHit2D rightCheck = Physics2D.Raycast(rigid.position, Vector2.right, 1.4f, LayerMask.GetMask("Player"));
-
-            if (leftCheck.collider != null) // 좌측 감지
-            {
-                gameObject.transform.localScale = new Vector3(1, 1, 1);
-                StartCoroutine("Attack");
-            }
-            else if (rightCheck.collider != null) // 우측 감지
-            {
-                gameObject.transform.localScale = new Vector3(-1, 1, 1);
-                StartCoroutine("Attack");
-            }
+            StartCoroutine("Attack");
         }
     }
 
-    // #2. 공격 실행
+    // #1. 공격 실행
     IEnumerator Attack()
     {
         onAttack = true;
 
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(atkTakeTime);        
         animator.SetTrigger("doAttack");
         hitBox.SetActive(true);
-        
+
         yield return new WaitForSeconds(0.1f);
         hitBox.SetActive(false);
 
-        yield return new WaitForSeconds(1.4f);
+        yield return new WaitForSeconds(atkDelay);
         onAttack = false;
     }
 
-    void OnTriggerStay2D(Collider2D collision)
+    // #2. 피격 처리
+    void OnTriggerEnter2D(Collider2D collision)
     {
+        if (onDie)
+            return;
+
         if (collision.gameObject.CompareTag("PlayerHitBox"))
         {
             float damage = collision.gameObject.GetComponentInParent<Player>().playerATK;
-            StartCoroutine("DamageProcess", damage);
+            DamageProcess(damage);
         }
     }
 
-    IEnumerator DamageProcess(float amount)
+    void DamageProcess(float damage)
     {
-        onDamage = true;
-        hp -= amount;
-        spriteRenderer.color = new Color(1, 1, 1, 0.4f);
+        hp -= damage;
 
         if (hp <= 0)
         {
@@ -87,17 +74,31 @@ public class Zombie : Enemy
         }
         else
         {
-            yield return new WaitForSeconds(0.1f);
-            onDamage = false;
-
-            yield return new WaitForSeconds(1);
-            spriteRenderer.color = new Color(1, 1, 1, 1);
+            BackCheck();
         }
     }
 
+    // #3. 죽음 처리
     IEnumerator DieProcess()
     {
-        yield return new WaitForSeconds(1.0f);
+        StopCoroutine("Attack");
+        collider.isTrigger = true;
+        spriteRenderer.color = new Color(1, 1, 1, 0.3f);
+
+        yield return new WaitForSeconds(2.0f);
         gameObject.SetActive(false);
+    }
+
+    // #4. 후방 확인
+    void BackCheck()
+    {
+        Debug.DrawRay(backSight.transform.position, Vector2.left * sightDir, Color.blue);
+        RaycastHit2D backCheck = Physics2D.Raycast(backSight.transform.position, Vector2.left * sightDir, 1, LayerMask.GetMask("Player"));
+
+        if (backCheck)
+        {
+            sightDir *= -1;
+            transform.localScale = new Vector3(transform.localScale.x * -1, 1, 1);
+        }
     }
 }

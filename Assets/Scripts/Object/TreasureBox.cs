@@ -9,5 +9,6 @@ public class TreasureBox : Object
     public void Spawn()
     {
         spawnObject.gameObject.SetActive(true);
+        gameObject.SetActive(false);
     }
 }

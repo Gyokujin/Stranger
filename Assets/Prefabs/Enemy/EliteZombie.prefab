@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &446035184
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 446035185}
+  m_Layer: 7
+  m_Name: BackSight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &446035185
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446035184}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.426, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4233255633279471488}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4233255633279471490
 GameObject:
   m_ObjectHideFlags: 0
@@ -34,6 +65,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1776512836464637967}
+  - {fileID: 446035185}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -119,7 +151,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.016241074}
@@ -168,10 +200,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76d390411129bf54ea4bb8053a52717f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atk: 12
-  hp: 7
+  atk: 7
+  hp: 5
+  frontSight: 2.2
+  atkTakeTime: 1
+  atkDelay: 0.4
+  sightDir: 0
+  onDetect: 0
+  onAttack: 0
   onDamage: 0
+  onDie: 0
   hitBox: {fileID: 6661989347450524359}
+  backSight: {fileID: 446035184}
 --- !u!1 &6661989347450524359
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,9 @@ public class Player : MonoBehaviour
 {
     public static Player instance = null;
 
+    [SerializeField]
+    private int num;
+
     [Header("Status")]
     [Range(0, 100)]
     public float playerHP;
@@ -13,6 +16,7 @@ public class Player : MonoBehaviour
     public float playerATK;
     [SerializeField][Range(0, 10)]
     private float runSpeed = 3;
+    private float defaultSpeed;
     [SerializeField][Range(0, 12)]
     private float jumpForce;
 
@@ -22,9 +26,11 @@ public class Player : MonoBehaviour
     private int jumpCnt;
     private bool onMove;
     private bool onGround;
+    private bool onCrouch;
     [SerializeField]
     private float checkDistance;
     private float inputX;
+    private float inputY;
     private float isRight = 1; // 바라보는 방향 1 = 오른쪽, -1 = 왼쪽
     [SerializeField]
     private float slidingSpeed;
@@ -34,6 +40,15 @@ public class Player : MonoBehaviour
 
     [Header("Action")]
     [SerializeField]
+    private float dashSpeed;
+    [SerializeField]
+    private float defaultDashTime;
+    private float dashTime;
+    private bool onDash;
+    private bool dashCool;
+    [SerializeField]
+    private float dashCooldown;
+    [SerializeField]
     private int atkCount;
     private int atkCnt;
     [SerializeField]
@@ -41,13 +56,17 @@ public class Player : MonoBehaviour
     private bool onAttack;
     private bool onDamaged;
     private bool onDie;
+    public GameObject targetObject;
 
     [Header("Physics")]
     [SerializeField]
     private Transform groundCheckFront; // 바닥 체크 position
     [SerializeField]
     private Transform groundCheckBack; // 바닥 체크 position
-    [SerializeField]
+    private float standColOffsetY = -0.1564108f;
+    private float standColSizeY = 1.030928f;
+    private float crouchColOffsetY = -0.32f;
+    private float crouchColSizeY = 0.7f;
     private bool isWall;
     [SerializeField]
     private Transform wallCheck;
@@ -59,9 +78,10 @@ public class Player : MonoBehaviour
     private LayerMask wallLayer;
 
     [Header("Component")]
+    private Animator animator;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rigid;
-    private Animator animator;
+    private BoxCollider2D collider;
 
     void Awake()
     {
@@ -78,11 +98,14 @@ public class Player : MonoBehaviour
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
+        collider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
     }
 
     void Start()
     {
+        defaultSpeed = runSpeed;
+        dashCool = true;
         jumpCnt = jumpCount;
         atkCnt = atkCount;
     }
@@ -90,8 +113,10 @@ public class Player : MonoBehaviour
     void Update()
     {
         GetInput();
+        Crouch();
         Jump();
         Sliding();
+        Interaction();
     }
 
     void FixedUpdate()
@@ -102,16 +127,22 @@ public class Player : MonoBehaviour
     void GetInput()
     {
         inputX = Input.GetAxisRaw("Horizontal");
+        inputY = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetMouseButtonDown(0) && atkCount > 0 && !onMove && onGround && !onDamaged && !onDie)
+        if (Input.GetButtonDown("Attack") && atkCount > 0 && !onMove && onGround && !onCrouch && !onDamaged && !onDie && !onDash)
         {
             Attack();
+        }
+
+        if (Input.GetButtonDown("Dash") && !onAttack && onGround && !onDamaged && !onDie && !onDash && dashCool)
+        {
+            StartCoroutine("Dash");
         }
     }
 
     void Move()
     {
-        if (onAttack || onDamaged || onDie || isWallJump)
+        if (onCrouch || onAttack || onDamaged || onDie || isWallJump || onDash)
             return;
 
         // #. 캐릭터 이동
@@ -153,6 +184,28 @@ public class Player : MonoBehaviour
         }
     }
 
+    void Crouch()
+    {
+        if (onMove || !onGround || onAttack || onDamaged || onDie || isWall || onDash)
+            return;
+
+        // #. 캐릭터 숙이기
+        onCrouch = inputY < 0 ? true : false;
+        animator.SetBool("onCrouch", onCrouch);
+
+        if (onCrouch)
+        {
+            rigid.velocity = new Vector2(0, rigid.velocity.y);
+            collider.offset = new Vector2(collider.offset.x, crouchColOffsetY);
+            collider.size = new Vector2(collider.size.x, crouchColSizeY);
+        }
+        else
+        {
+            collider.offset = new Vector2(collider.offset.x, standColOffsetY);
+            collider.size = new Vector2(collider.size.x, standColSizeY);
+        }
+    }
+
     void Jump()
     {
         if (Input.GetButtonDown("Jump") && jumpCnt > 0 && !onAttack && !onDamaged && !onDie)
@@ -165,6 +218,67 @@ public class Player : MonoBehaviour
         {
             jumpCnt--;
         }
+    }
+
+    IEnumerator Dash()
+    {
+        dashCool = false;
+        onDash = true;
+        gameObject.layer = 9;
+        animator.SetBool("onDash", true);
+        dashTime = defaultDashTime;
+
+        if (onMove && !onCrouch)
+        {
+            while (dashTime > 0 && inputX != 0)
+            {
+                rigid.velocity = new Vector2(inputX * dashSpeed, rigid.velocity.y);
+                dashTime -= Time.deltaTime;
+                yield return null;
+            }
+
+            if (dashTime > 0)
+            {
+                dashTime = 0;
+                gameObject.layer = 3;
+                animator.SetBool("onMove", false);
+            }
+
+            yield return new WaitForSeconds(dashTime);
+            runSpeed = defaultSpeed;
+            animator.SetBool("onDash", false);
+        }
+        else if (!onMove && onCrouch)
+        {
+            onCrouch = true;
+            animator.SetBool("onCrouch", true);
+            rigid.AddForce(Vector2.left * -isRight * 280);
+
+            yield return new WaitForSeconds(dashTime);
+            rigid.velocity = new Vector2(0, rigid.velocity.y);
+            animator.SetBool("onDash", false);
+        }
+        else if (!onMove && !onCrouch)
+        {
+            while (dashTime > 0 && inputX == 0)
+            {
+                dashTime -= Time.deltaTime;
+                rigid.velocity = new Vector2(dashSpeed * isRight, 0);
+                animator.SetBool("onMove", true);
+                animator.SetBool("onDash", true);
+                yield return null;
+            }
+
+            dashTime = 0;
+            rigid.velocity = new Vector2(rigid.velocity.x, rigid.velocity.y);
+            animator.SetBool("onMove", false);
+            animator.SetBool("onDash", false);
+        }
+        onDash = false;
+        gameObject.layer = 3;
+
+        yield return new WaitForSeconds(dashCooldown);
+        dashCool = true;
     }
 
     void Sliding()
@@ -192,6 +306,22 @@ public class Player : MonoBehaviour
         else
         {
             animator.SetBool("onSliding", false);
+        }
+    }
+
+    void Interaction()
+    {
+        if (Input.GetButtonDown("Interaction") && targetObject != null)
+        {
+            switch (targetObject.GetComponent<Object>().objectType.ToString())
+            {
+                case "TreasureBox":
+                    targetObject.GetComponent<TreasureBox>().Spawn();
+                    break;
+                case "PortalRing":
+                    targetObject.GetComponent<Portal>().Teleport(gameObject);
+                    break;
+            }
         }
     }
 
@@ -287,6 +417,11 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("HitBox"))
         {
             OnDamaged(collision.transform.position, collision.gameObject.GetComponentInParent<Enemy>().atk);
+        }
+
+        if (collision.gameObject.CompareTag("Object"))
+        {
+            targetObject = collision.gameObject;
         }
     }
 

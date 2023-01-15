@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9128936152294941465}
   - component: {fileID: 9128936152294941467}
   m_Layer: 0
-  m_Name: Flying Demon
+  m_Name: FlyingDemon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

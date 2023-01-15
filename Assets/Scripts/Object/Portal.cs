@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Portal : Object
 {
-    public GameObject targetPortal;
-
-    public void Teleport(GameObject target)
-    {
-        target.transform.position = targetPortal.transform.position;
-    }
+    public Vector2 targetPortal;
+    public Vector2 offsetBackground; // 포탈 사용시 배경 재배치를 위한 좌표
 }

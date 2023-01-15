@@ -6,9 +6,6 @@ public class Player : MonoBehaviour
 {
     public static Player instance = null;
 
-    [SerializeField]
-    private int num;
-
     [Header("Status")]
     [Range(0, 100)]
     public float playerHP;
@@ -20,23 +17,34 @@ public class Player : MonoBehaviour
     [SerializeField][Range(0, 12)]
     private float jumpForce;
 
+    [Header("State")]
+    [HideInInspector]
+    public bool onMove;
+    private bool onGround;
+    private bool onCrouch;
+    [HideInInspector]
+    public bool onDash;
+    private bool onAttack;
+    private bool onDamaged;
+    private bool onDie;
+    private bool isWall;
+    private bool isWallJump;
+    public bool onLadder;
+
     [Header("Move")]
     [SerializeField]
     private int jumpCount;
     private int jumpCnt;
-    private bool onMove;
-    private bool onGround;
-    private bool onCrouch;
     [SerializeField]
     private float checkDistance;
     private float inputX;
     private float inputY;
-    private float isRight = 1; // 바라보는 방향 1 = 오른쪽, -1 = 왼쪽
+    [HideInInspector]
+    public float isRight = 1; // 바라보는 방향 1 = 오른쪽, -1 = 왼쪽
     [SerializeField]
     private float slidingSpeed;
     [SerializeField]
     private float wallJumpPower;
-    private bool isWallJump;
 
     [Header("Action")]
     [SerializeField]
@@ -44,7 +52,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float defaultDashTime;
     private float dashTime;
-    private bool onDash;
     private bool dashCool;
     [SerializeField]
     private float dashCooldown;
@@ -53,10 +60,7 @@ public class Player : MonoBehaviour
     private int atkCnt;
     [SerializeField]
     private GameObject attackBox;
-    private bool onAttack;
-    private bool onDamaged;
-    private bool onDie;
-    public GameObject targetObject;
+    private GameObject targetObject;
 
     [Header("Physics")]
     [SerializeField]
@@ -67,7 +71,8 @@ public class Player : MonoBehaviour
     private float standColSizeY = 1.030928f;
     private float crouchColOffsetY = -0.32f;
     private float crouchColSizeY = 0.7f;
-    private bool isWall;
+    [SerializeField]
+    private float ladderMoveDir;
     [SerializeField]
     private Transform wallCheck;
     [SerializeField]
@@ -122,6 +127,7 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         Move();
+        LadderMove();
     }
 
     void GetInput()
@@ -142,7 +148,7 @@ public class Player : MonoBehaviour
 
     void Move()
     {
-        if (onCrouch || onAttack || onDamaged || onDie || isWallJump || onDash)
+        if (onCrouch || onAttack || onDamaged || onDie || isWallJump || onDash || onLadder)
             return;
 
         // #. 캐릭터 이동
@@ -318,8 +324,21 @@ public class Player : MonoBehaviour
                 case "TreasureBox":
                     targetObject.GetComponent<TreasureBox>().Spawn();
                     break;
+
                 case "PortalRing":
-                    targetObject.GetComponent<Portal>().Teleport(gameObject);
+                    Vector2 destination = targetObject.GetComponent<Portal>().targetPortal;
+                    Vector2 offset = targetObject.GetComponent<Portal>().offsetBackground;
+                    GameManager.instance.Teleport(destination, offset);
+                    break;
+
+                case "Ladder":
+                    transform.position = new Vector2(targetObject.transform.position.x, transform.position.y);
+                    Debug.DrawRay(rigid.position, Vector2.up * 1f, Color.red);
+                    Debug.DrawRay(rigid.position, Vector2.down * 1f, Color.red);
+                    RaycastHit2D topDir = Physics2D.Raycast(rigid.position, Vector2.up, 1f, LayerMask.GetMask("Object"));
+                    RaycastHit2D botDir = Physics2D.Raycast(rigid.position, Vector2.down, 1f, LayerMask.GetMask("Object"));
+                    onLadder = true;
+                    gameObject.layer = 11;
                     break;
             }
         }
@@ -391,6 +410,27 @@ public class Player : MonoBehaviour
             OffAttack();
     }
 
+    void LadderMove()
+    {
+        if (onLadder)
+        {
+            animator.SetBool("ladderMove", true);
+            animator.SetBool("onMove", inputY != 0 ? true : false);
+            rigid.gravityScale = 0;
+
+            if (inputY != 0)
+            {
+                animator.speed = 1f;
+                rigid.velocity = new Vector2(0, inputY * defaultSpeed * 0.4f);
+            }
+            else
+            {
+                animator.speed = 0f;
+                rigid.velocity = Vector2.zero;
+            }
+        }
+    }
+
     void Die()
     {
         onDie = true;
@@ -412,17 +452,22 @@ public class Player : MonoBehaviour
         isWallJump = false;
     }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Object"))
+            targetObject = collision.gameObject;
+    }
+
     void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("HitBox"))
-        {
+        if (collision.CompareTag("HitBox"))
             OnDamaged(collision.transform.position, collision.gameObject.GetComponentInParent<Enemy>().atk);
-        }
+    }
 
-        if (collision.gameObject.CompareTag("Object"))
-        {
-            targetObject = collision.gameObject;
-        }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Object"))
+            targetObject = null;
     }
 
     // #. 바닥 체크 Ray를 씬화면에 표시

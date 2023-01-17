@@ -136,7 +136,7 @@ TextureImporter:
         width: 137
         height: 127
       alignment: 9
-      pivot: {x: 0.2967583, y: 0.5897863}
+      pivot: {x: 0.3177272, y: 0.59012705}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -157,7 +157,7 @@ TextureImporter:
         width: 159
         height: 95
       alignment: 9
-      pivot: {x: 0.33655456, y: 0.79867876}
+      pivot: {x: 0.35615915, y: 0.79710275}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -178,7 +178,7 @@ TextureImporter:
         width: 143
         height: 93
       alignment: 9
-      pivot: {x: 0.32136205, y: 0.8175203}
+      pivot: {x: 0.3471396, y: 0.816867}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -199,7 +199,7 @@ TextureImporter:
         width: 103
         height: 96
       alignment: 9
-      pivot: {x: 0.39859867, y: 0.8092082}
+      pivot: {x: 0.42457357, y: 0.81248695}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -220,7 +220,7 @@ TextureImporter:
         width: 143
         height: 93
       alignment: 9
-      pivot: {x: 0.32125023, y: 0.8162271}
+      pivot: {x: 0.34120318, y: 0.81762135}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -241,7 +241,7 @@ TextureImporter:
         width: 160
         height: 93
       alignment: 9
-      pivot: {x: 0.34502906, y: 0.7932789}
+      pivot: {x: 0.36019555, y: 0.7945215}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -261,8 +261,8 @@ TextureImporter:
         y: 212
         width: 137
         height: 126
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.31783277, y: 0.58809894}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -282,8 +282,8 @@ TextureImporter:
         y: 213
         width: 110
         height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.22301136, y: 0.43201122}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -303,8 +303,8 @@ TextureImporter:
         y: 215
         width: 109
         height: 156
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.21630187, y: 0.42267355}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -408,8 +408,8 @@ TextureImporter:
         y: 221
         width: 99
         height: 108
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5019716, y: 0.4886989}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -429,8 +429,8 @@ TextureImporter:
         y: 225
         width: 96
         height: 94
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5853564, y: 0.44337398}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -450,8 +450,8 @@ TextureImporter:
         y: 216
         width: 150
         height: 92
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5191006, y: 0.9316764}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -471,8 +471,8 @@ TextureImporter:
         y: 218
         width: 144
         height: 81
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5191006, y: 0.9316764}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -492,8 +492,8 @@ TextureImporter:
         y: 218
         width: 122
         height: 80
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5191006, y: 0.9316764}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -513,8 +513,8 @@ TextureImporter:
         y: 24
         width: 137
         height: 127
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.31761634, y: 0.5912699}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -534,8 +534,8 @@ TextureImporter:
         y: 34
         width: 98
         height: 108
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.49605107, y: 0.48781946}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -555,8 +555,8 @@ TextureImporter:
         y: 37
         width: 98
         height: 95
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.584733, y: 0.4477478}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -576,8 +576,8 @@ TextureImporter:
         y: 26
         width: 127
         height: 159
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.32755983, y: 0.4325537}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -597,8 +597,8 @@ TextureImporter:
         y: 15
         width: 203
         height: 169
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5744076, y: 0.4668572}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -618,8 +618,8 @@ TextureImporter:
         y: 13
         width: 205
         height: 172
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.58305544, y: 0.4762278}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -639,8 +639,8 @@ TextureImporter:
         y: 15
         width: 195
         height: 169
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5573205, y: 0.4679261}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -660,8 +660,8 @@ TextureImporter:
         y: 13
         width: 193
         height: 171
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.557454, y: 0.4723222}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -681,8 +681,8 @@ TextureImporter:
         y: 29
         width: 150
         height: 91
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5191006, y: 0.9316764}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -702,8 +702,8 @@ TextureImporter:
         y: 31
         width: 144
         height: 81
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.51803756, y: 0.9334186}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -723,8 +723,8 @@ TextureImporter:
         y: 31
         width: 121
         height: 80
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5191006, y: 0.9316764}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -874,7 +874,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Flying Demon_Breath0: -1673980466
-      Flying Demon_45: -971222371
+      Flying Demon_71: 1307093769
       Flying Demon_44: 95950716
       Flying Demon_16: 1042880786
       Flying Demon_56: -1387833947
@@ -887,6 +887,7 @@ TextureImporter:
       Flying Demon_12: 1009205867
       Flying Demon_Attack0: 1905238547
       Flying Demon_Breath1: -48713496
+      Flying Demon_47: -1424852154
       Flying Demon_Breath8: -257427068
       Flying Demon_Fire3: -263660005
       Flying Demon_Attack1: -354761829
@@ -906,7 +907,6 @@ TextureImporter:
       Flying Demon_Breath7: 2133537179
       Flying Demon_Attack4: 1729645306
       Flying Demon_62: -142641455
-      Flying Demon_Fire4: 669056560
       Flying Demon_29: 146750057
       Flying Demon_43: 1908314433
       Flying Demon_Attack6: 1323243046
@@ -950,8 +950,8 @@ TextureImporter:
       Flying Demon_42: 832291814
       Flying Demon_Breath5: -324211055
       Flying Demon_Attack7: -319915996
-      Flying Demon_71: 1307093769
-      Flying Demon_47: -1424852154
+      Flying Demon_45: -971222371
+      Flying Demon_Fire4: 669056560
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

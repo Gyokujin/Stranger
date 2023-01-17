@@ -67,12 +67,14 @@ public class Player : MonoBehaviour
     private Transform groundCheckFront; // 바닥 체크 position
     [SerializeField]
     private Transform groundCheckBack; // 바닥 체크 position
+    [SerializeField]
+    private Transform ladderCheckTop; // 사다리 체크 position
+    [SerializeField]
+    private Transform ladderCheckBot; // 사다리 체크 position
     private float standColOffsetY = -0.1564108f;
     private float standColSizeY = 1.030928f;
     private float crouchColOffsetY = -0.32f;
     private float crouchColSizeY = 0.7f;
-    [SerializeField]
-    private float ladderMoveDir;
     [SerializeField]
     private Transform wallCheck;
     [SerializeField]
@@ -148,7 +150,7 @@ public class Player : MonoBehaviour
 
     void Move()
     {
-        if (onCrouch || onAttack || onDamaged || onDie || isWallJump || onDash || onLadder)
+        if (onCrouch || onLadder || onAttack || onDamaged || onDie || isWallJump || onDash || onLadder)
             return;
 
         // #. 캐릭터 이동
@@ -332,13 +334,8 @@ public class Player : MonoBehaviour
                     break;
 
                 case "Ladder":
-                    transform.position = new Vector2(targetObject.transform.position.x, transform.position.y);
-                    Debug.DrawRay(rigid.position, Vector2.up * 1f, Color.red);
-                    Debug.DrawRay(rigid.position, Vector2.down * 1f, Color.red);
-                    RaycastHit2D topDir = Physics2D.Raycast(rigid.position, Vector2.up, 1f, LayerMask.GetMask("Object"));
-                    RaycastHit2D botDir = Physics2D.Raycast(rigid.position, Vector2.down, 1f, LayerMask.GetMask("Object"));
+                    transform.position = new Vector2(targetObject.transform.position.x, transform.position.y);     
                     onLadder = true;
-                    gameObject.layer = 11;
                     break;
             }
         }
@@ -414,14 +411,40 @@ public class Player : MonoBehaviour
     {
         if (onLadder)
         {
+            gameObject.layer = 11;
+            onGround = false;
             animator.SetBool("ladderMove", true);
             animator.SetBool("onMove", inputY != 0 ? true : false);
             rigid.gravityScale = 0;
+            bool ladderCheck = false;
 
             if (inputY != 0)
             {
                 animator.speed = 1f;
                 rigid.velocity = new Vector2(0, inputY * defaultSpeed * 0.4f);
+                
+                switch (inputY)
+                {
+                    case 1:
+                        ladderCheck = Physics2D.Raycast(ladderCheckTop.position, Vector2.up, checkDistance * 0.6f, groundLayer);
+                        break;
+                    case -1:
+                        ladderCheck = Physics2D.Raycast(ladderCheckBot.position, Vector2.down, checkDistance * 0.6f, groundLayer);
+                        break;
+                }
+
+                if (ladderCheck)
+                {
+                    gameObject.layer = 3;
+                    rigid.gravityScale = 1.6f;
+                    float moveDir = inputY == 1 ? 0.7f : 0.2f;
+                    transform.position = new Vector2(transform.position.x, transform.position.y + moveDir);
+
+                    Debug.Log("바닥감지");
+                    animator.SetBool("ladderMove", false);
+                    onGround = true;
+                    onLadder = false;
+                }
             }
             else
             {
@@ -473,11 +496,22 @@ public class Player : MonoBehaviour
     // #. 바닥 체크 Ray를 씬화면에 표시
     void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(groundCheckFront.position, Vector2.down * checkDistance);
-        Gizmos.DrawRay(groundCheckBack.position, Vector2.down * checkDistance);
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawRay(wallCheck.position, Vector2.right * isRight * wallCheckDistance);
+        if (onGround)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawRay(groundCheckFront.position, Vector2.down * checkDistance);
+            Gizmos.DrawRay(groundCheckBack.position, Vector2.down * checkDistance);
+        }
+        else if (isWall)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawRay(wallCheck.position, Vector2.right * isRight * wallCheckDistance);
+        }
+        else if (onLadder)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawRay(ladderCheckTop.position, Vector2.up * checkDistance * 0.6f);
+            Gizmos.DrawRay(ladderCheckBot.position, Vector2.down * checkDistance * 0.6f);
+        }
     }
 }

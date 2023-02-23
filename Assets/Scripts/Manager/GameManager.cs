@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator StageOpen()
     {
+        AnimatorInitialization();
         Player.instance.transform.position = new Vector2(startPointX[stageNum], -2.3f);
         Player.instance.GetComponent<SpriteRenderer>().sprite = idleStance;
         MoveCamera.instance.SwitchOffset(stageNum);
@@ -44,14 +45,16 @@ public class GameManager : MonoBehaviour
 
         if (stageNum == 1 || stageNum == 3) // 이벤트로만 진행되는 씬
         {
+            UIManager.instance.HideUI();
             UIManager.instance.EventCut(true);
             Player.instance.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             yield return StartCoroutine(UIManager.instance.FadeIn());
         }
         else // 캐릭터를 직접 조작하여 진행하는 씬
         {
-            yield return StartCoroutine(UIManager.instance.FadeIn());
+            UIManager.instance.ShowUI();
             UIManager.instance.EventCut(false);
+            yield return StartCoroutine(UIManager.instance.FadeIn());
             Player.instance.enabled = true;
             
             yield return StartCoroutine(UIManager.instance.StageNameFade());
@@ -97,6 +100,18 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("현재 체력은 " + Player.instance.playerHP);     
     }
+
+    void AnimatorInitialization()
+    {
+        Animator playerAnimator = Player.instance.GetComponent<Animator>();
+        playerAnimator.enabled = true;
+        playerAnimator.SetBool("onMove", false);
+        playerAnimator.SetBool("onGround", true);
+        playerAnimator.SetBool("onCrouch", false);
+        playerAnimator.SetBool("onSliding", false);
+        playerAnimator.SetBool("onDash", false);
+    }
+
 
     public IEnumerator Teleport()
     {

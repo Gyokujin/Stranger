@@ -22,7 +22,6 @@ public class Stage0_1_Event : MonoBehaviour
 
     IEnumerator Stage0_1Event()
     {
-        Player.instance.GetComponent<SpriteRenderer>().sprite = GameManager.instance.idleStance;
         Player.instance.GetComponent<SpriteRenderer>().flipX = true;
 
         while (Player.instance.transform.position.x < 2f)
@@ -35,7 +34,7 @@ public class Stage0_1_Event : MonoBehaviour
         Player.instance.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         Player.instance.GetComponent<Animator>().SetBool("onMove", false);
         Player.instance.GetComponent<SpriteRenderer>().sprite = GameManager.instance.idleStance;
-        Player.instance.GetComponent<Animator>().speed = 0;
+        Player.instance.GetComponent<Animator>().enabled = false;
 
         yield return new WaitForSeconds(4f);
         flyingDemon.SetActive(true);
@@ -53,9 +52,7 @@ public class Stage0_1_Event : MonoBehaviour
         flyingDemon.GetComponent<Animator>().speed = 0.75f;
         flyingDemon.GetComponent<Animator>().SetBool("onAttack", true);
         flyingDemon.GetComponent<Animator>().SetTrigger("attack_Meteor");
-        Player.instance.GetComponent<Animator>().speed = 1;
         Player.instance.GetComponent<SpriteRenderer>().sprite = battleStance;
-        Player.instance.GetComponent<Animator>().speed = 0;
 
         yield return new WaitForSeconds(1f);
         GameManager.instance.stageNum = 2;

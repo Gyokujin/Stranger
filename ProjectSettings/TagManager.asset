@@ -11,6 +11,8 @@ TagManager:
   - EventTrigger
   - PlayerHitBox
   - Coin
+  - Wall
+  - Bullet
   layers:
   - Default
   - TransparentFX

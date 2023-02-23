@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MoveCamera : MonoBehaviour
 {
+    public static MoveCamera instance = null;
+
     [SerializeField]
     private Transform target;
     [SerializeField]
@@ -19,6 +21,22 @@ public class MoveCamera : MonoBehaviour
     private float offsetX;
     [SerializeField]
     private float offsetY;
+    private float[] offsetVowelX = { 1, -4, -0.5f };
+    private float[] offsetVowelY = { 0.5f, 1.5f, 0.5f };
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            if (instance != this)
+                Destroy(this.gameObject);
+        }
+    }
 
     void Start()
     {
@@ -36,7 +54,6 @@ public class MoveCamera : MonoBehaviour
     {
         Vector3 pos = new Vector3(target.position.x + offsetX, target.position.y + offsetY, -10f);
         transform.position = Vector3.Lerp(transform.position, pos, Time.deltaTime * speed);
-        // transform.position = new Vector3(transform.position.x, transform.position.y, -10f);
 
         float lx = size.x * 0.5f - width;
         float clampX = Mathf.Clamp(transform.position.x, -lx + center.x, lx + center.x);
@@ -45,5 +62,11 @@ public class MoveCamera : MonoBehaviour
         float clampY = Mathf.Clamp(transform.position.y, -ly + center.y, ly + center.y);
 
         transform.position = new Vector3(clampX, clampY, -10f);
+    }
+
+    public void SwitchOffset(int num)
+    {
+        offsetX = offsetVowelX[num];
+        offsetY = offsetVowelY[num];
     }
 }

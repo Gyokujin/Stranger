@@ -60,7 +60,7 @@ public class Player : MonoBehaviour
     private int atkCnt;
     [SerializeField]
     private GameObject attackBox;
-    private GameObject targetObject;
+    public GameObject targetObject;
 
     [Header("Physics")]
     [SerializeField]
@@ -129,7 +129,7 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         Move();
-        LadderMove();
+        //LadderMove();
     }
 
     void GetInput()
@@ -330,7 +330,7 @@ public class Player : MonoBehaviour
                 case "PortalRing":
                     Vector2 destination = targetObject.GetComponent<Portal>().targetPortal;
                     Vector2 offset = targetObject.GetComponent<Portal>().offsetBackground;
-                    GameManager.instance.Teleport(destination, offset);
+                    StartCoroutine(GameManager.instance.Teleport());
                     break;
 
                 case "Ladder":
@@ -369,6 +369,7 @@ public class Player : MonoBehaviour
             return;
 
         playerHP -= damage;
+        rigid.velocity = Vector2.zero;
 
         if (playerHP <= 0)
             Die();
@@ -398,7 +399,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         onDamaged = false;
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         gameObject.layer = 3;
         spriteRenderer.color = new Color(1, 1, 1, 1);
 
@@ -479,6 +480,8 @@ public class Player : MonoBehaviour
     {
         if (collision.CompareTag("Object"))
             targetObject = collision.gameObject;
+        else if(collision.CompareTag("Bullet"))
+            OnDamaged(collision.transform.position, collision.gameObject.GetComponentInParent<Meteor>().atk);
     }
 
     void OnTriggerStay2D(Collider2D collision)

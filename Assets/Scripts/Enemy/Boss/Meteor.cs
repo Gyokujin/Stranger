@@ -4,15 +4,37 @@ using UnityEngine;
 
 public class Meteor : MonoBehaviour
 {
-    private Rigidbody2D rigid;
+    public float atk;
+    [SerializeField]
+    private GameObject hitBox;
 
-    void Start()
+    private Rigidbody2D rigid;
+    private Animator animator;
+
+    void Awake()
     {
-        rigid.GetComponent<Rigidbody2D>();
+        rigid = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
-    void OnEnable()
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        //rigid.velocity = new Vector2(1, -1);
+        if (collision.CompareTag("Player") || collision.CompareTag("Platform") || collision.CompareTag("Wall"))
+        {
+            StartCoroutine("Explosion");
+        }
+    }
+
+    IEnumerator Explosion()
+    {
+        yield return new WaitForSeconds(0.1f);
+        hitBox.SetActive(true);
+        rigid.simulated = false;
+        animator.SetTrigger("Invocation");
+    }
+
+    public void Destroy()
+    {
+        Destroy(gameObject);
     }
 }

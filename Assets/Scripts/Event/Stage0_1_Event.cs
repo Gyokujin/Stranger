@@ -10,11 +10,6 @@ public class Stage0_1_Event : MonoBehaviour
     [SerializeField]
     private GameObject flyingDemon;
 
-    void Awake()
-    {
-        UIManager.instance.HideUI();
-    }
-
     void Start()
     {
         StartCoroutine("Stage0_1Event");
@@ -22,8 +17,6 @@ public class Stage0_1_Event : MonoBehaviour
 
     IEnumerator Stage0_1Event()
     {
-        Player.instance.GetComponent<SpriteRenderer>().flipX = true;
-
         while (Player.instance.transform.position.x < 2f)
         {
             Player.instance.GetComponent<Animator>().SetBool("onMove", true);
@@ -38,7 +31,7 @@ public class Stage0_1_Event : MonoBehaviour
 
         yield return new WaitForSeconds(4f);
         flyingDemon.SetActive(true);
-        Player.instance.GetComponent<SpriteRenderer>().flipX = false;
+        Player.instance.GetComponent<SpriteRenderer>().flipX = true;
 
         while (flyingDemon.transform.position.x < -5f)
         {
@@ -55,7 +48,6 @@ public class Stage0_1_Event : MonoBehaviour
         Player.instance.GetComponent<SpriteRenderer>().sprite = battleStance;
 
         yield return new WaitForSeconds(1f);
-        GameManager.instance.stageNum = 2;
-        StartCoroutine(GameManager.instance.StageTransition(GameManager.instance.stageNum));
+        StartCoroutine(GameManager.instance.StageTransition(2));
     }
 }

@@ -125,34 +125,4 @@ public class UIManager : MonoBehaviour
         statusPanel.SetActive(true);
         itemPanel.SetActive(true);
     }
-
-    public void Relocation(Vector2 destination, Vector2 offset)
-    {
-        // #. 배경 재배치
-        for (int i = 0; i < backgroundImage.transform.childCount; i++)
-        {
-            float dir = 0;
-
-            switch (i)
-            {
-                case 0:
-                    dir = -24;
-                    break;
-                case 1:
-                    dir = -12;
-                    break;
-                case 2:
-                    dir = 0;
-                    break;
-                case 3:
-                    dir = 12;
-                    break;
-                case 4:
-                    dir = 24;
-                    break;
-            }
-
-            backgroundImage.backgrounds[i].transform.position = new Vector2(destination.x + dir + offset.x, destination.y + offset.y);
-        }
-    }
 }

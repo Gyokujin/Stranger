@@ -9,8 +9,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
 
     public Sprite idleStance;
-    public float[] startPointX = { -2.5f, -7f, -8.55f };
-    private string[] stageNames = { "Stage0_1", "Stage0_1_Event", "Stage0_2", "Village" };
+    public float[] startPointX = { -2.5f, -7f, -8.55f, -2.5f };
+    private string[] stageNames = { "Stage0_1", "Stage0_1_Event", "Stage0_2", "Stage0_2_Event", "Village" };
     public int stagePoint;
     public int stageNum = 0;
     public int gold = 0;
@@ -39,8 +39,11 @@ public class GameManager : MonoBehaviour
     {
         AnimatorInitialization();
         Player.instance.transform.position = new Vector2(startPointX[stageNum], -2.3f);
+        Player.instance.transform.rotation = Quaternion.Euler(0, 0, 0);
+        Player.instance.isRight = 1;
+        Player.instance.GetComponent<SpriteRenderer>().flipX = false;
         Player.instance.GetComponent<SpriteRenderer>().sprite = idleStance;
-        MoveCamera.instance.SwitchOffset(stageNum);
+        MoveCamera.instance.CameraSetting(stageNum);
         Debug.Log(stageNum);
 
         if (stageNum == 1 || stageNum == 3) // 이벤트로만 진행되는 씬
@@ -120,7 +123,6 @@ public class GameManager : MonoBehaviour
 
         yield return StartCoroutine(UIManager.instance.FadeOut());
         Player.instance.transform.position = portal.targetPortal;
-        UIManager.instance.Relocation(portal.targetPortal, portal.offsetBackground);
 
         yield return StartCoroutine(UIManager.instance.FadeIn());
         Player.instance.enabled = true;

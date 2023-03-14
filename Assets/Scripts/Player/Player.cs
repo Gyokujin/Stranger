@@ -323,8 +323,9 @@ public class Player : MonoBehaviour
         {
             switch (targetObject.GetComponent<Object>().objectType.ToString())
             {
-                case "TreasureBox":
-                    targetObject.GetComponent<TreasureBox>().Spawn();
+                case "Gate":
+                    Debug.Log("Gate Use");
+                    targetObject.GetComponent<Gate>().UseGate();
                     break;
 
                 case "PortalRing":
@@ -333,10 +334,15 @@ public class Player : MonoBehaviour
                     StartCoroutine(GameManager.instance.Teleport());
                     break;
 
+                case "TreasureBox":
+                    targetObject.GetComponent<TreasureBox>().Spawn();
+                    break;
+                /*
                 case "Ladder":
                     transform.position = new Vector2(targetObject.transform.position.x, transform.position.y);     
                     onLadder = true;
                     break;
+                */
             }
         }
     }

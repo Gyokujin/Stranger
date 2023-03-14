@@ -9,8 +9,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
 
     public Sprite idleStance;
-    public float[] startPointX = { -2.5f, -7f, -8.55f, -2.5f };
-    private string[] stageNames = { "Stage0_1", "Stage0_1_Event", "Stage0_2", "Stage0_2_Event", "Village" };
+    public float[] startPointX;
+    public float[] startPointY;
+    private string[] stageNames = { "Stage0_1", "Stage0_1_Event", "Stage0_2", "Stage0_2_Event1", "Stage0_2_Event2", "Village_Event1", "Village_Home0", "Village" };
     public int stagePoint;
     public int stageNum = 0;
     public int gold = 0;
@@ -38,7 +39,7 @@ public class GameManager : MonoBehaviour
     IEnumerator StageOpen()
     {
         AnimatorInitialization();
-        Player.instance.transform.position = new Vector2(startPointX[stageNum], -2.3f);
+        Player.instance.transform.position = new Vector2(startPointX[stageNum], startPointY[stageNum]);
         Player.instance.transform.rotation = Quaternion.Euler(0, 0, 0);
         Player.instance.isRight = 1;
         Player.instance.GetComponent<SpriteRenderer>().flipX = false;
@@ -46,7 +47,7 @@ public class GameManager : MonoBehaviour
         MoveCamera.instance.CameraSetting(stageNum);
         Debug.Log(stageNum);
 
-        if (stageNum == 1 || stageNum == 3) // 이벤트로만 진행되는 씬
+        if (stageNum == 1 || stageNum == 3 || stageNum == 4 || stageNum == 5) // 이벤트로만 진행되는 씬
         {
             UIManager.instance.HideUI();
             UIManager.instance.EventCut(true);

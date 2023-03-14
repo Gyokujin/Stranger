@@ -149,7 +149,7 @@ public class EliteZombie : Enemy
     }
 
     // #5. Á×À½ Ã³¸®
-    IEnumerator DieProcess()
+    public IEnumerator DieProcess()
     {
         StopCoroutine("MeleeAttack");
         StopCoroutine("ChaseAttack");

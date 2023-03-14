@@ -79,7 +79,7 @@ public class Zombie : Enemy
     }
 
     // #3. Á×À½ Ã³¸®
-    IEnumerator DieProcess()
+    public IEnumerator DieProcess()
     {
         StopCoroutine("Attack");
         collider.isTrigger = true;

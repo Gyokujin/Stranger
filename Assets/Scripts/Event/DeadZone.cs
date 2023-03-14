@@ -13,7 +13,7 @@ public class DeadZone : MonoBehaviour
             if (Player.instance.playerHP > 0)
             {
                 collision.attachedRigidbody.velocity = Vector2.zero;
-                collision.gameObject.transform.position = new Vector2(GameManager.instance.startPointX[GameManager.instance.stageNum], -2.3f);
+                collision.gameObject.transform.position = new Vector2(GameManager.instance.startPointX[GameManager.instance.stageNum], GameManager.instance.startPointY[GameManager.instance.stageNum]);
             }
             else
             {

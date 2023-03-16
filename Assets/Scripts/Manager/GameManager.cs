@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,11 +12,11 @@ public class GameManager : MonoBehaviour
     public Sprite idleStance;
     public float[] startPointX;
     public float[] startPointY;
-    private string[] stageNames = { "Stage0_1", "Stage0_1_Event", "Stage0_2", "Stage0_2_Event1", "Stage0_2_Event2", "Village_Event1", "Village_Home0", "Village" };
     public int stagePoint;
     public int stageNum = 0;
     public int gold = 0;
     public int crystal = 0;
+    public string[] watchEvent;
 
     void Awake()
     {
@@ -39,6 +40,8 @@ public class GameManager : MonoBehaviour
     IEnumerator StageOpen()
     {
         AnimatorInitialization();
+        Player.instance.GetComponent<BoxCollider2D>().enabled = true;
+        Player.instance.GetComponent<Rigidbody2D>().gravityScale = 1.6f;
         Player.instance.transform.position = new Vector2(startPointX[stageNum], startPointY[stageNum]);
         Player.instance.transform.rotation = Quaternion.Euler(0, 0, 0);
         Player.instance.isRight = 1;
@@ -47,7 +50,7 @@ public class GameManager : MonoBehaviour
         MoveCamera.instance.CameraSetting(stageNum);
         Debug.Log(stageNum);
 
-        if (stageNum == 1 || stageNum == 3 || stageNum == 4 || stageNum == 5) // 이벤트로만 진행되는 씬
+        if (stageNum == 1 || stageNum == 3 || stageNum == 4 || stageNum == 5 || stageNum == 7) // 이벤트로만 진행되는 씬
         {
             UIManager.instance.HideUI();
             UIManager.instance.EventCut(true);
@@ -68,8 +71,8 @@ public class GameManager : MonoBehaviour
     public IEnumerator StageTransition(int num)
     {
         Player.instance.enabled = false;
-        stageNum = num;
         yield return StartCoroutine(UIManager.instance.FadeOut());
+        stageNum = num;
         SceneManager.LoadScene(num);
         StartCoroutine("StageOpen");
     }

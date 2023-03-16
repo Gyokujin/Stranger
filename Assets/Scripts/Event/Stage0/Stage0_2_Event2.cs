@@ -101,6 +101,7 @@ public class Stage0_2_Event2 : MonoBehaviour
         laurence.GetComponent<SpriteRenderer>().flipX = true;
 
         yield return new WaitForSeconds(3f);
+        MoveCamera.instance.target = Player.instance.transform;
         StartCoroutine(GameManager.instance.StageTransition(5));
     }
 }

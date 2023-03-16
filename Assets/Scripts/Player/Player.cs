@@ -324,8 +324,11 @@ public class Player : MonoBehaviour
             switch (targetObject.GetComponent<Object>().objectType.ToString())
             {
                 case "Gate":
-                    Debug.Log("Gate Use");
                     targetObject.GetComponent<Gate>().UseGate();
+                    break;
+
+                case "VillageGate":
+                    targetObject.GetComponent<VillageGate>().UseVillageGate();
                     break;
 
                 case "PortalRing":

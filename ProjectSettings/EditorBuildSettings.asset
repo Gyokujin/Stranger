@@ -6,19 +6,19 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Stage_0/Stage0_1.unity
+    path: Assets/Scenes/Stage0/Stage0_1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Stage_0/Stage0_1_Event.unity
+    path: Assets/Scenes/Stage0/Stage0_1_Event.unity
     guid: 22939b57086ee654581b0c05812ccd6d
   - enabled: 1
-    path: Assets/Scenes/Stage_0/Stage0_2.unity
+    path: Assets/Scenes/Stage0/Stage0_2.unity
     guid: b44016bdfb40ac44c8d7bd8e5ad5d6e8
   - enabled: 1
-    path: Assets/Scenes/Stage_0/Stage0_2_Event1.unity
+    path: Assets/Scenes/Stage0/Stage0_2_Event1.unity
     guid: f6c28397c96a2fe45b1fb5c97b48b0e3
   - enabled: 1
-    path: Assets/Scenes/Stage_0/Stage0_2_Event2.unity
+    path: Assets/Scenes/Stage0/Stage0_2_Event2.unity
     guid: 639a10d6ac0dcd341ab32e2dcf600bfe
   - enabled: 1
     path: Assets/Scenes/Village/Village_Event1.unity
@@ -28,8 +28,14 @@ EditorBuildSettings:
     guid: 6f3e7b9e887e7fe4d99825c556aa2607
   - enabled: 1
     path: Assets/Scenes/Village/Village_Event2.unity
-    guid: db031471a2b5e544883b2c4c4fbe8df9
+    guid: ffd17f5c866b28746885f60e8bc12f15
   - enabled: 1
     path: Assets/Scenes/Village/Village.unity
-    guid: 74a80edda9c20af4ba4e6edf2a8a1d5d
+    guid: db031471a2b5e544883b2c4c4fbe8df9
+  - enabled: 1
+    path: Assets/Scenes/Stage1/Stage1_1.unity
+    guid: afa9546e33422b04a823fc351d3a6705
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

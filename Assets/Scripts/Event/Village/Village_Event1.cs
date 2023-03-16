@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Village_Event1 : MonoBehaviour
 {
-    private float originGravity;
     private Vector2 bedPos;
     [SerializeField]
     private Sprite bedStance0;
@@ -21,7 +20,6 @@ public class Village_Event1 : MonoBehaviour
 
     void Start()
     {
-        originGravity = Player.instance.GetComponent<Rigidbody2D>().gravityScale;
         bedPos = new Vector2(GameManager.instance.startPointX[5], GameManager.instance.startPointY[5]);
         Player.instance.GetComponent<BoxCollider2D>().enabled = false;
         Player.instance.GetComponent<Animator>().enabled = false;

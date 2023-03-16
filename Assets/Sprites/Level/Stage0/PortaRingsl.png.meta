@@ -600,7 +600,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PortaRingsl_19: -691996989
+      PortaRingsl_14: 1216245664
       PortaRingsl_12: -862390199
       PortaRingsl_21: 194747993
       PortaRingsl_17: -1771635093
@@ -618,10 +618,10 @@ TextureImporter:
       PortaRingsl_15: -1063095707
       PortaRingsl_8: 1716834385
       PortaRingsl_10: 213392375
+      PortaRingsl_7: 1808758113
       PortaRingsl_5: 244849909
       PortaRingsl_3: -1026792127
-      PortaRingsl_14: 1216245664
-      PortaRingsl_7: 1808758113
+      PortaRingsl_19: -691996989
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

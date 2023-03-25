@@ -8,9 +8,9 @@ public class Player : MonoBehaviour
 
     [Header("Status")]
     [Range(0, 100)]
-    public float playerHP;
+    public int playerHP;
     [Range(0, 10)]
-    public float playerATK;
+    public int playerATK;
     [SerializeField][Range(0, 10)]
     private float runSpeed = 3;
     private float defaultSpeed;
@@ -24,12 +24,12 @@ public class Player : MonoBehaviour
     private bool onCrouch;
     [HideInInspector]
     public bool onDash;
+    private bool isWall;
+    private bool isWallJump;
     private bool onAttack;
     private bool onDamaged;
     private bool onDie;
-    private bool isWall;
-    private bool isWallJump;
-    public bool onLadder;
+    // public bool onLadder;
 
     [Header("Move")]
     [SerializeField]
@@ -55,22 +55,27 @@ public class Player : MonoBehaviour
     private bool dashCool;
     [SerializeField]
     private float dashCooldown;
+    public GameObject targetObject;
+
+    [Header("Attack")]
     [SerializeField]
     private int atkCount;
     private int atkCnt;
     [SerializeField]
     private GameObject attackBox;
-    public GameObject targetObject;
+
+    [Header("Hit")]
+    private float invincibilityTime = 0;
+    [SerializeField]
+    private GameObject hitBox;
+    [SerializeField]
+    private Sprite hitPose;
 
     [Header("Physics")]
     [SerializeField]
     private Transform groundCheckFront; // 바닥 체크 position
     [SerializeField]
     private Transform groundCheckBack; // 바닥 체크 position
-    [SerializeField]
-    private Transform ladderCheckTop; // 사다리 체크 position
-    [SerializeField]
-    private Transform ladderCheckBot; // 사다리 체크 position
     private float standColOffsetY = -0.1564108f;
     private float standColSizeY = 1.030928f;
     private float crouchColOffsetY = -0.32f;
@@ -124,6 +129,7 @@ public class Player : MonoBehaviour
         Jump();
         Sliding();
         Interaction();
+        Invincibilit();
     }
 
     void FixedUpdate()
@@ -132,6 +138,7 @@ public class Player : MonoBehaviour
         //LadderMove();
     }
 
+    // #1. 조작을 위한 키 입력받기
     void GetInput()
     {
         inputX = Input.GetAxisRaw("Horizontal");
@@ -148,9 +155,10 @@ public class Player : MonoBehaviour
         }
     }
 
+    // #2. 이동 명령
     void Move()
     {
-        if (onCrouch || onLadder || onAttack || onDamaged || onDie || isWallJump || onDash || onLadder)
+        if (onCrouch || onAttack || onDamaged || onDie || isWallJump || onDash)
             return;
 
         // #. 캐릭터 이동
@@ -192,6 +200,15 @@ public class Player : MonoBehaviour
         }
     }
 
+    // #. 방향 전환
+    void FlipPlayer()
+    {
+        // #. 방향을 전환
+        transform.eulerAngles = new Vector3(0, Mathf.Abs(transform.eulerAngles.y - 180), 0);
+        isRight *= -1;
+    }
+
+    // #3. 앉기
     void Crouch()
     {
         if (onMove || !onGround || onAttack || onDamaged || onDie || isWall || onDash)
@@ -214,6 +231,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    // #4. 점프
     void Jump()
     {
         if (Input.GetButtonDown("Jump") && jumpCnt > 0 && !onAttack && !onDamaged && !onDie)
@@ -228,10 +246,12 @@ public class Player : MonoBehaviour
         }
     }
 
+    // #5. 대시
     IEnumerator Dash()
     {
         dashCool = false;
         onDash = true;
+        invincibilityTime += 0.7f;
         gameObject.layer = 9;
         animator.SetBool("onDash", true);
         dashTime = defaultDashTime;
@@ -289,6 +309,7 @@ public class Player : MonoBehaviour
         dashCool = true;
     }
 
+    // #6. 벽 타기
     void Sliding()
     {
         if (!onGround)
@@ -317,6 +338,12 @@ public class Player : MonoBehaviour
         }
     }
 
+    void FreezeX()
+    {
+        isWallJump = false;
+    }
+
+    // #7. 상호작용
     void Interaction()
     {
         if (Input.GetButtonDown("Interaction") && targetObject != null)
@@ -350,6 +377,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    // #8. 공격 명령
     void Attack()
     {
         onAttack = true;
@@ -357,13 +385,8 @@ public class Player : MonoBehaviour
         animator.SetTrigger("doAttack");
     }
 
-    void OffAttack()
-    {
-        onAttack = false;
-        atkCnt = atkCount;
-    }
-
-    IEnumerator OnHitBox()
+    // #. 어택 박스 활성화
+    public IEnumerator OnAttackBox()
     {
         attackBox.SetActive(true);
 
@@ -371,8 +394,15 @@ public class Player : MonoBehaviour
         attackBox.SetActive(false);
     }
 
-    // #. 피격 처리
-    public void OnDamaged(Vector2 targetPos, float damage)
+    // #. 공격 상태 비활성화
+    void OffAttack()
+    {
+        onAttack = false;
+        atkCnt = atkCount;
+    }
+
+    // #9. 피격 명령
+    public void OnDamaged(Vector2 targetPos, int damage)
     {
         if (onDamaged)
             return;
@@ -386,6 +416,7 @@ public class Player : MonoBehaviour
         {
             onDamaged = true;
             GameManager.instance.HPSetting("Damage");
+            invincibilityTime += 2f;
 
             // #. 레이어 변경 (Invincibility)
             gameObject.layer = 9;
@@ -403,6 +434,50 @@ public class Player : MonoBehaviour
         }
     }
 
+    // #. 잡기 피격 명령
+    public IEnumerator Holding(int damage, Vector2 knockback)
+    {
+        if (!onDamaged)
+        {
+            onDamaged = true;
+            animator.enabled = false;
+            spriteRenderer.sprite = hitPose;
+
+            yield return new WaitForSeconds(2f);
+            playerHP -= damage;
+            GameManager.instance.HPSetting("Damage");
+
+            // #. 넉백
+            collider.isTrigger = true;
+            rigid.gravityScale = 0;
+            animator.enabled = true;
+            animator.SetTrigger("doDamaged");
+            rigid.AddForce(knockback * 2, ForceMode2D.Impulse);
+
+            yield return new WaitForSeconds(0.5f);
+            collider.isTrigger = false;
+            rigid.gravityScale = 1.6f;
+            onDamaged = false;
+        }
+    }
+
+    // #. 데미지 처리후 무적상태
+    void Invincibilit()
+    {
+        float time = Mathf.Clamp(invincibilityTime, 0, 2);
+
+        if (time > 0)
+        {
+            invincibilityTime -= Time.deltaTime;
+            hitBox.SetActive(false);
+        }
+        else
+        {
+            hitBox.SetActive(true);
+        }
+    }
+
+    // #. 피격 상태 비활성화
     IEnumerator OffDamaged()
     {
         yield return new WaitForSeconds(0.5f);
@@ -417,6 +492,45 @@ public class Player : MonoBehaviour
             OffAttack();
     }
 
+    // #10. 플레이어 죽음 명령
+    void Die()
+    {
+        onDie = true;
+        gameObject.layer = 9;
+        animator.SetTrigger("doDie");
+
+        GameManager.instance.GameOver();
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Object"))
+            targetObject = collision.gameObject;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Object"))
+            targetObject = null;
+    }
+
+    // #. 바닥 체크 Ray를 씬화면에 표시
+    void OnDrawGizmos()
+    {
+        if (onGround)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawRay(groundCheckFront.position, Vector2.down * checkDistance);
+            Gizmos.DrawRay(groundCheckBack.position, Vector2.down * checkDistance);
+        }
+        else if (isWall)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawRay(wallCheck.position, Vector2.right * isRight * wallCheckDistance);
+        }
+    }
+
+    /*
     void LadderMove()
     {
         if (onLadder)
@@ -432,7 +546,7 @@ public class Player : MonoBehaviour
             {
                 animator.speed = 1f;
                 rigid.velocity = new Vector2(0, inputY * defaultSpeed * 0.4f);
-                
+
                 switch (inputY)
                 {
                     case 1:
@@ -463,67 +577,5 @@ public class Player : MonoBehaviour
             }
         }
     }
-
-    void Die()
-    {
-        onDie = true;
-        gameObject.layer = 9;
-        animator.SetTrigger("doDie");
-
-        GameManager.instance.GameOver();
-    }
-
-    void FlipPlayer()
-    {
-        // #. 방향을 전환
-        transform.eulerAngles = new Vector3(0, Mathf.Abs(transform.eulerAngles.y - 180), 0);
-        isRight *= -1;
-    }
-
-    void FreezeX()
-    {
-        isWallJump = false;
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Object"))
-            targetObject = collision.gameObject;
-        else if(collision.CompareTag("Bullet"))
-            OnDamaged(collision.transform.position, collision.gameObject.GetComponentInParent<Meteor>().atk);
-    }
-
-    void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.CompareTag("HitBox"))
-            OnDamaged(collision.transform.position, collision.gameObject.GetComponentInParent<Enemy>().atk);
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Object"))
-            targetObject = null;
-    }
-
-    // #. 바닥 체크 Ray를 씬화면에 표시
-    void OnDrawGizmos()
-    {
-        if (onGround)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawRay(groundCheckFront.position, Vector2.down * checkDistance);
-            Gizmos.DrawRay(groundCheckBack.position, Vector2.down * checkDistance);
-        }
-        else if (isWall)
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawRay(wallCheck.position, Vector2.right * isRight * wallCheckDistance);
-        }
-        else if (onLadder)
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawRay(ladderCheckTop.position, Vector2.up * checkDistance * 0.6f);
-            Gizmos.DrawRay(ladderCheckBot.position, Vector2.down * checkDistance * 0.6f);
-        }
-    }
+    */
 }

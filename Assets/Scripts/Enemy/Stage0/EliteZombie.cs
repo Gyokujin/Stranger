@@ -128,12 +128,12 @@ public class EliteZombie : Enemy
 
         if (collision.gameObject.CompareTag("PlayerHitBox"))
         {
-            float damage = collision.gameObject.GetComponentInParent<Player>().playerATK;
+            int damage = collision.gameObject.GetComponentInParent<Player>().playerATK;
             DamageProcess(damage);
         }
     }
 
-    void DamageProcess(float damage)
+    void DamageProcess(int damage)
     {
         hp -= damage;
 

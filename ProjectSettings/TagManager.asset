@@ -14,6 +14,7 @@ TagManager:
   - Wall
   - Bullet
   - NPC
+  - GrapBox
   layers:
   - Default
   - TransparentFX

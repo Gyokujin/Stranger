@@ -7,8 +7,8 @@ public class Enemy : MonoBehaviour
     public enum ObjectType { Zombie, EliteZombie, BurningGhoul }
 
     [Header("Status")]
-    public float atk;
-    public float hp;
+    public int atk;
+    public int hp;
     public float frontSight;
     public float atkTakeTime;
     public float atkDelay;

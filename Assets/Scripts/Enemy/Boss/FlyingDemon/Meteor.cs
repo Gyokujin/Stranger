@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Meteor : MonoBehaviour
 {
-    public float atk;
+    public int atk;
     [SerializeField]
     private GameObject hitBox;
 

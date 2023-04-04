@@ -1,0 +1,938 @@
+fileFormatVersion: 2
+guid: 8c68b5c38e28ce2459146990d6b00fce
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Gaiten_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 120
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.6, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79f88848fab58914890e4f94c70229f0
+      internalID: -697973184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_1
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 120
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.587, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 776b4861aaff7ec4d8d0b6085e42bb9c
+      internalID: 1641643461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_2
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 120
+        width: 83
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc90c3581fd8ea441b1a6bbc3a49cc13
+      internalID: -1184694904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_3
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 120
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.488, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 583fec8d079013b4e8b498a6bf08287e
+      internalID: -2031350100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_4
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 120
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.46, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6d30801f9ec599478f9e3203925fe63
+      internalID: 1532291347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_5
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 120
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.448, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fda6e5f73a4abd74c85fda08a4fbb0be
+      internalID: 586166598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_6
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 120
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.43, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69fc2f224b3e41a47b589da8bd37c41d
+      internalID: -241217334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_7
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 120
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.418, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09efeb81dcd1798499228c21541f69ce
+      internalID: -1136271067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_8
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 120
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.425, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00b9b7a4be9407d479102e424692a540
+      internalID: -125360388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_9
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 120
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.41, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20637cd7fa0090f418a350bc00594d1f
+      internalID: -346486672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_10
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 120
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.398, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c33fcfaacfda17d42adc9072c8ec0917
+      internalID: -779941658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_11
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 120
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.386, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eda530619e8493f49801640e11e98a0e
+      internalID: 869003763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_12
+      rect:
+        serializedVersion: 2
+        x: 996
+        y: 120
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.374, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c156f6fdf6e73845b49a21a640c55ea
+      internalID: -1020458727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 60
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.58, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85c5b57a9aec5f14088ce8e39e6378b7
+      internalID: 1689071504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_14
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 60
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.58, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c614baf33d39c16449db777a89273356
+      internalID: -529794925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_15
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 60
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.56, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0161df09a34bf6409b597f5ada52698
+      internalID: -1579389591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_16
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 60
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.565, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 191fe7738b0b1f444ae996839339bdd8
+      internalID: 1701369336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_17
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 60
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.5524, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e108b96841f75734fa09a5e1d76b3c8a
+      internalID: -1449073924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_18
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 60
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.55, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83f96267b12ad724daee36e032f50a3e
+      internalID: 1758097249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_19
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 60
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.538, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea9dfa21705cc1940983754950545db0
+      internalID: -571817812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_20
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 60
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27cf6f86dbd250c47a873e0a41df99a0
+      internalID: -601427928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_21
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 60
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.485, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e75930dddb7c45644bf5537bcb054875
+      internalID: 371983123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_22
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 60
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.473, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6b75d2bcc56c0045b4179a6c9462785
+      internalID: 1662679067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_23
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 60
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.46, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3124276dbb38a744d95c96e23ca8d795
+      internalID: -761510258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_24
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 60
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.3, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad9b6466715048c46808c2251454af09
+      internalID: -553939366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_25
+      rect:
+        serializedVersion: 2
+        x: 996
+        y: 60
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.25, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: feca5a7f50303d249bb4a006c9dea983
+      internalID: -1217546249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_26
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.395, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff6148f982263e14f896540dbab007f9
+      internalID: 1431641083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_27
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 0
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.382, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 507608867e0c44c4ea72ef6119c1eb37
+      internalID: 1012967121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_28
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 0
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.37, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 902809b52bd174249993ac739d62ec66
+      internalID: 1464035395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_29
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 0
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.358, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 822b66d93fa2a1343a40648dd42258d0
+      internalID: 976196257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_30
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 0
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.4514256, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e447abe3a2bc37445bf6c5fa4fe3cd3f
+      internalID: -485511503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_31
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 0
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.4390825, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e775570b2fb6f944385d1ad34b77238e
+      internalID: -1899768209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_32
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 0
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.42801234, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09c32aa149b3eca41a1419f68d1e2601
+      internalID: 1466796041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_33
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 0
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.4149861, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc5443aee4d702646aa0af38d3279054
+      internalID: 1562009825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_34
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 0
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.40333575, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bda8b516799e6a645a9e5d1fea226600
+      internalID: -46639033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiten_35
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 0
+        width: 83
+        height: 60
+      alignment: 9
+      pivot: {x: 0.39175084, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e2ce32932d3c69488ff7cc73e86a9fd
+      internalID: -458233384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Gaiten_2: -1184694904
+      Gaiten_30: -485511503
+      Gaiten_28: 1464035395
+      Gaiten_0: -697973184
+      Gaiten_17: -1449073924
+      Gaiten_22: 1662679067
+      Gaiten_18: 1758097249
+      Gaiten_29: 976196257
+      Gaiten_5: 586166598
+      Gaiten_8: -125360388
+      Gaiten_10: -779941658
+      Gaiten_12: -1020458727
+      Gaiten_23: -761510258
+      Gaiten_27: 1012967121
+      Gaiten_7: -1136271067
+      Gaiten_19: -571817812
+      Gaiten_31: -1899768209
+      Gaiten_9: -346486672
+      Gaiten_25: -1217546249
+      Gaiten_26: 1431641083
+      Gaiten_1: 1641643461
+      Gaiten_14: -529794925
+      Gaiten_21: 371983123
+      Gaiten_34: -46639033
+      Gaiten_3: -2031350100
+      Gaiten_35: -458233384
+      Gaiten_20: -601427928
+      Gaiten_15: -1579389591
+      Gaiten_33: 1562009825
+      Gaiten_6: -241217334
+      Gaiten_4: 1532291347
+      Gaiten_11: 869003763
+      Gaiten_24: -553939366
+      Gaiten_32: 1466796041
+      Gaiten_13: 1689071504
+      Gaiten_16: 1701369336
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

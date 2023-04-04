@@ -10,19 +10,23 @@ public class Meteor : MonoBehaviour
 
     private Rigidbody2D rigid;
     private Animator animator;
+    private CircleCollider2D collider;
 
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        collider = GetComponent<CircleCollider2D>();
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void Start()
     {
-        if (collision.CompareTag("Player") || collision.CompareTag("Platform") || collision.CompareTag("Wall"))
-        {
-            StartCoroutine("Explosion");
-        }
+        Invoke("OnHitBox", 1f);
+    }
+
+    void OnHitBox()
+    {
+        collider.enabled = true;
     }
 
     IEnumerator Explosion()
@@ -36,5 +40,13 @@ public class Meteor : MonoBehaviour
     public void Destroy()
     {
         Destroy(gameObject);
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player") || collision.CompareTag("Platform") || collision.CompareTag("Wall"))
+        {
+            StartCoroutine("Explosion");
+        }
     }
 }

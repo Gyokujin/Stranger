@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     public static Player instance = null;
 
     [Header("Status")]
-    [Range(0, 100)]
+    public int maxHP;
     public int playerHP;
     [Range(0, 10)]
     public int playerATK;
@@ -29,7 +29,6 @@ public class Player : MonoBehaviour
     private bool onAttack;
     private bool onDamaged;
     private bool onDie;
-    // public bool onLadder;
 
     [Header("Move")]
     [SerializeField]
@@ -65,6 +64,8 @@ public class Player : MonoBehaviour
     private GameObject attackBox;
 
     [Header("Hit")]
+    [SerializeField]
+    private float crouchHitPos; // 앉은 상태에서의 HitBox Y좌표
     private float invincibilityTime = 0;
     [SerializeField]
     private GameObject hitBox;
@@ -78,8 +79,8 @@ public class Player : MonoBehaviour
     private Transform groundCheckBack; // 바닥 체크 position
     private float standColOffsetY = -0.1564108f;
     private float standColSizeY = 1.030928f;
-    private float crouchColOffsetY = -0.32f;
-    private float crouchColSizeY = 0.7f;
+    private float crouchColOffsetY = -0.4838978f;
+    private float crouchColSizeY = 0.3759539f;
     [SerializeField]
     private Transform wallCheck;
     [SerializeField]
@@ -220,12 +221,14 @@ public class Player : MonoBehaviour
 
         if (onCrouch)
         {
+            hitBox.transform.localPosition = new Vector2(0, crouchHitPos);
             rigid.velocity = new Vector2(0, rigid.velocity.y);
             collider.offset = new Vector2(collider.offset.x, crouchColOffsetY);
             collider.size = new Vector2(collider.size.x, crouchColSizeY);
         }
         else
         {
+            hitBox.transform.localPosition = Vector2.zero;
             collider.offset = new Vector2(collider.offset.x, standColOffsetY);
             collider.size = new Vector2(collider.size.x, standColSizeY);
         }
@@ -234,7 +237,7 @@ public class Player : MonoBehaviour
     // #4. 점프
     void Jump()
     {
-        if (Input.GetButtonDown("Jump") && jumpCnt > 0 && !onAttack && !onDamaged && !onDie)
+        if (Input.GetButtonDown("Jump") && jumpCnt > 0 && !onAttack && !onDamaged && !onDie && !onCrouch)
         {
             // #. 캐릭터 점프
             rigid.velocity = Vector2.up * jumpForce;
@@ -404,7 +407,7 @@ public class Player : MonoBehaviour
     // #9. 피격 명령
     public void OnDamaged(Vector2 targetPos, int damage)
     {
-        if (onDamaged)
+        if (onDamaged || onDie)
             return;
 
         playerHP -= damage;
@@ -427,6 +430,7 @@ public class Player : MonoBehaviour
             // #. 넉백
             int dirc = transform.position.x - targetPos.x > 0 ? 1 : -1;
             rigid.AddForce(new Vector2(dirc, 0) * 2, ForceMode2D.Impulse);
+            animator.SetBool("onCrouch", false);
             animator.SetTrigger("doDamaged");
 
             // #. 피격 해제 실행
@@ -499,7 +503,14 @@ public class Player : MonoBehaviour
         gameObject.layer = 9;
         animator.SetTrigger("doDie");
 
-        GameManager.instance.GameOver();
+        StartCoroutine(GameManager.instance.GameOver());
+    }
+
+    // #11. 플레이어 부활
+    public void Resurrection()
+    {
+        onDie = false;
+        gameObject.layer = 3;
     }
 
     void OnTriggerEnter2D(Collider2D collision)

@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public int gold = 0;
     public int crystal = 0;
     public string[] watchEvent;
+    private bool eventStage;
 
     void Awake()
     {
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
     IEnumerator StageOpen()
     {
         AnimatorInitialization();
+        Player.instance.playerHP = Player.instance.maxHP;
         Player.instance.GetComponent<BoxCollider2D>().enabled = true;
         Player.instance.GetComponent<Rigidbody2D>().gravityScale = 1.6f;
         Player.instance.transform.position = new Vector2(startPointX[stageNum], startPointY[stageNum]);
@@ -50,22 +52,34 @@ public class GameManager : MonoBehaviour
         MoveCamera.instance.CameraSetting(stageNum);
         Debug.Log(stageNum);
 
-        if (stageNum == 1 || stageNum == 3 || stageNum == 4 || stageNum == 5 || stageNum == 7) // 이벤트로만 진행되는 씬
+        switch (stageNum)
         {
-            UIManager.instance.HideUI();
-            UIManager.instance.EventCut(true);
-            Player.instance.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            yield return StartCoroutine(UIManager.instance.FadeIn());
+            // 이벤트로만 진행되는 씬
+            case 1:
+            case 3:
+            case 4:
+            case 5:
+            case 7:
+            case 10:
+            case 12:
+                eventStage = true;
+                UIManager.instance.HideUI();
+                UIManager.instance.EventCut(true);
+                Player.instance.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                break;
+
+            // 캐릭터를 직접 조작하여 진행하는 씬
+            default:
+                eventStage = false;
+                UIManager.instance.ShowUI();
+                UIManager.instance.EventCut(false);
+                break;
         }
-        else // 캐릭터를 직접 조작하여 진행하는 씬
-        {
-            UIManager.instance.ShowUI();
-            UIManager.instance.EventCut(false);
-            yield return StartCoroutine(UIManager.instance.FadeIn());
+
+        yield return StartCoroutine(UIManager.instance.FadeIn());
+
+        if (!eventStage)
             Player.instance.enabled = true;
-            
-            yield return StartCoroutine(UIManager.instance.StageNameFade());
-        }
     }
 
     public IEnumerator StageTransition(int num)
@@ -119,7 +133,6 @@ public class GameManager : MonoBehaviour
         playerAnimator.SetBool("onDash", false);
     }
 
-
     public IEnumerator Teleport()
     {
         Portal portal = Player.instance.targetObject.GetComponent<Portal>();
@@ -132,8 +145,17 @@ public class GameManager : MonoBehaviour
         Player.instance.enabled = true;
     }
 
-    public void GameOver()
+    public IEnumerator GameOver()
     {
+        yield return new WaitForSeconds(3f);
+        Time.timeScale = 0;
+        UIManager.instance.ShowGameOver();
         Debug.Log("Game Over");
+    }
+
+    public void GameRestart()
+    {
+        Time.timeScale = 1;
+        StartCoroutine(StageTransition(stageNum));
     }
 }

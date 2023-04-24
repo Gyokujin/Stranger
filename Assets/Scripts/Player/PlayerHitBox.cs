@@ -10,13 +10,28 @@ public class PlayerHitBox : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Bullet"))
-            player.OnDamaged(collision.transform.position, collision.gameObject.GetComponentInParent<Meteor>().atk);
+        {
+            int damage = 0;
+
+            if (collision.gameObject.GetComponent<Meteor>() != null)
+                damage = collision.gameObject.GetComponentInParent<Meteor>().atk;
+            else if (collision.gameObject.GetComponent<RosaryBullet>() != null)
+                damage = collision.gameObject.GetComponentInParent<RosaryBullet>().atk;
+
+            player.OnDamaged(collision.transform.position, damage);
+        }
     }
 
     void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("HitBox"))
-            player.OnDamaged(collision.transform.position, collision.gameObject.GetComponentInParent<Enemy>().atk);
+        {
+            if (collision.gameObject.GetComponentInParent<Enemy>() != null)
+                player.OnDamaged(collision.transform.position, collision.gameObject.GetComponentInParent<Enemy>().atk);
+            else if (collision.gameObject.GetComponentInParent<Gaiten>() != null)
+                player.OnDamaged(collision.transform.position, collision.gameObject.GetComponentInParent<Gaiten>().atk);
+        }
+            
         else if (collision.CompareTag("GrapBox"))
         {
             Enemy enemy = collision.GetComponentInParent<Enemy>();

@@ -21,8 +21,12 @@ public class UIManager : MonoBehaviour
     private GameObject fadeImage;
     [SerializeField]
     private GameObject eventCut;
+    [SerializeField]
+    private GameObject gameOverPanel;
+    [SerializeField]
+    private GameObject returnButton;
 
-    public float fadeTime = 2.5f;
+    public float fadeTime = 3.5f;
 
     void Awake()
     {
@@ -44,7 +48,7 @@ public class UIManager : MonoBehaviour
         Image fade = fadeImage.GetComponent<Image>();
         float count = fadeTime;
 
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1f);
 
         // #. 이미지 페이드인
         while (count > 0)
@@ -56,6 +60,11 @@ public class UIManager : MonoBehaviour
         }
 
         fadeImage.SetActive(fade);
+
+        yield return new WaitForSeconds(0.75f);
+
+        if (stageNameSprites[GameManager.instance.stageNum] != null)
+            StartCoroutine("StageNameFade");
     }
 
     public IEnumerator FadeOut()
@@ -124,5 +133,15 @@ public class UIManager : MonoBehaviour
     {
         statusPanel.SetActive(true);
         itemPanel.SetActive(true);
+    }
+
+    public void ShowGameOver()
+    {
+        gameOverPanel.SetActive(true);
+
+        if (GameManager.instance.stageNum > 5)
+            returnButton.SetActive(true);
+        else
+            returnButton.SetActive(false);
     }
 }

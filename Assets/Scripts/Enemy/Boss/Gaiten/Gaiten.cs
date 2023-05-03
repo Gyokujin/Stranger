@@ -120,7 +120,7 @@ public class Gaiten : MonoBehaviour
         hp = maxHP;
         collider.offset = idleColOff;
         collider.size = idleColSize;
-        Think();
+        Invoke("Think", 3.5f);
     }
 
     // #1. 탐지 결과를 바탕으로 대기 또는 이동
@@ -545,7 +545,8 @@ public class Gaiten : MonoBehaviour
         PatternStop();
         animator.SetBool("onHit", true);
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
+        StartCoroutine(GameManager.instance.StageTransition(12));
     }
 
     void PatternStop()

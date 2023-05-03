@@ -12,6 +12,7 @@ public class Coin : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             GameManager.instance.Increase("gold", goldPoint);
+            UIManager.instance.SetGold();
             gameObject.SetActive(false);
         }
     }

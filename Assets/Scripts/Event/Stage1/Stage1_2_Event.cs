@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class Stage1_2_Event : MonoBehaviour
 {
+    private Animator playerAni;
     [SerializeField]
     private GameObject gaiten;
+    private Animator gaitenAni;
+
+    void Awake()
+    {
+        playerAni = Player.instance.GetComponent<Animator>();
+        gaitenAni = gaiten.GetComponent<Animator>();
+    }
 
     void Start()
     {
@@ -14,19 +22,25 @@ public class Stage1_2_Event : MonoBehaviour
 
     IEnumerator Cut1()
     {
-        while (Player.instance.transform.position.x < -5.5f)
+        yield return new WaitForSeconds(2f);
+        playerAni.SetTrigger("doAttack");
+
+        yield return new WaitForSeconds(0.3f);
+        gaitenAni.SetBool("onHit", true);
+        gaiten.GetComponent<Rigidbody2D>().AddForce(Vector2.right * 3.5f, ForceMode2D.Impulse);
+
+        yield return new WaitForSeconds(0.7f);
+        gaitenAni.SetBool("onHit", false);
+        gaitenAni.SetBool("onAttack", true);
+        gaitenAni.SetTrigger("doDash");
+
+        while (gaiten.transform.position.x > 4f)
         {
-            Player.instance.GetComponent<Animator>().SetBool("onMove", true);
-            Player.instance.GetComponent<Rigidbody2D>().AddForce(Vector2.right * Time.deltaTime * 180f);
+            gaiten.GetComponent<Rigidbody2D>().velocity = Vector2.left * 3f;
             yield return null;
         }
 
-        Player.instance.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        Player.instance.GetComponent<Animator>().SetBool("onMove", false);
-        Player.instance.GetComponent<Animator>().enabled = false;
-        Player.instance.GetComponent<SpriteRenderer>().sprite = GameManager.instance.idleStance;
-
-        yield return new WaitForSeconds(2f);
-        gaiten.SetActive(true);
+        gaiten.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        gaitenAni.SetTrigger("doKickAttack");
     }
 }

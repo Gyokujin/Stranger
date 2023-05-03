@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d854ad0348f09dc41b53c0cd81c8d3c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atk: 0
+  atk: 15
   hp: 2000
   frontSight: 0
   atkTakeTime: 0
@@ -216,7 +216,7 @@ MonoBehaviour:
   chaseOffsetY: 2.2
   teleportEffect: {fileID: 9140868397184318430, guid: ec20f2cbbd5e1574488131308dfee729, type: 3}
   teleportDelay: 1
-  hitBox: {fileID: 0}
+  hitBox: {fileID: 7074153301371671265}
   meteorObject: {fileID: 300524442747813359, guid: b53095649797c984782a8b87cdd9b3df, type: 3}
   meteorCast: 1.75
   meteorMinNum: 3

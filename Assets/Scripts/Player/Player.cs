@@ -411,6 +411,7 @@ public class Player : MonoBehaviour
             return;
 
         playerHP -= damage;
+        GameManager.instance.HPSetting("Damage");
         rigid.velocity = Vector2.zero;
 
         if (playerHP <= 0)
@@ -418,7 +419,6 @@ public class Player : MonoBehaviour
         else
         {
             onDamaged = true;
-            GameManager.instance.HPSetting("Damage");
             invincibilityTime += 2f;
 
             // #. 레이어 변경 (Invincibility)
@@ -509,7 +509,11 @@ public class Player : MonoBehaviour
     // #11. 플레이어 부활
     public void Resurrection()
     {
+        transform.position = new Vector2(GameManager.instance.startPointX[GameManager.instance.stageNum], GameManager.instance.startPointY[GameManager.instance.stageNum]);
         onDie = false;
+        playerHP = maxHP;
+        UIManager.instance.SetHP(playerHP);
+        animator.SetTrigger("doResurrection");
         gameObject.layer = 3;
     }
 

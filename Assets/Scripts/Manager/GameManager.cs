@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
 
+    [SerializeField]
+    private string lobbyScene;
     public Sprite idleStance;
     public float[] startPointX;
     public float[] startPointY;
@@ -42,6 +44,7 @@ public class GameManager : MonoBehaviour
     {
         AnimatorInitialization();
         Player.instance.playerHP = Player.instance.maxHP;
+        UIManager.instance.SetHP(Player.instance.playerHP);
         Player.instance.GetComponent<BoxCollider2D>().enabled = true;
         Player.instance.GetComponent<Rigidbody2D>().gravityScale = 1.6f;
         Player.instance.transform.position = new Vector2(startPointX[stageNum], startPointY[stageNum]);
@@ -50,10 +53,30 @@ public class GameManager : MonoBehaviour
         Player.instance.GetComponent<SpriteRenderer>().flipX = false;
         Player.instance.GetComponent<SpriteRenderer>().sprite = idleStance;
         MoveCamera.instance.CameraSetting(stageNum);
-        Debug.Log(stageNum);
 
         switch (stageNum)
         {
+            // 캐릭터를 직접 조작하여 진행하는 씬
+            case 0:
+            case 2:
+            case 9:
+            case 11:
+                eventStage = false;
+                UIManager.instance.ShowUI();
+                UIManager.instance.EventCut(false);
+                yield return null;
+                SpawnManager.instance.ReadSpawnFile();
+                yield return StartCoroutine(SpawnManager.instance.SpawnEnemies());
+                break;
+
+            // 마을등 몬스터가 없는 씬
+            case 6:
+            case 8:
+                eventStage = false;
+                UIManager.instance.ShowUI();
+                UIManager.instance.EventCut(false);
+                break;
+
             // 이벤트로만 진행되는 씬
             case 1:
             case 3:
@@ -66,13 +89,6 @@ public class GameManager : MonoBehaviour
                 UIManager.instance.HideUI();
                 UIManager.instance.EventCut(true);
                 Player.instance.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                break;
-
-            // 캐릭터를 직접 조작하여 진행하는 씬
-            default:
-                eventStage = false;
-                UIManager.instance.ShowUI();
-                UIManager.instance.EventCut(false);
                 break;
         }
 
@@ -119,6 +135,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
+        UIManager.instance.SetHP(Player.instance.playerHP);
         Debug.Log("현재 체력은 " + Player.instance.playerHP);     
     }
 
@@ -131,6 +148,7 @@ public class GameManager : MonoBehaviour
         playerAnimator.SetBool("onCrouch", false);
         playerAnimator.SetBool("onSliding", false);
         playerAnimator.SetBool("onDash", false);
+        playerAnimator.Play("Idle");
     }
 
     public IEnumerator Teleport()
@@ -147,15 +165,38 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator GameOver()
     {
+        Player.instance.enabled = false;
         yield return new WaitForSeconds(3f);
         Time.timeScale = 0;
         UIManager.instance.ShowGameOver();
-        Debug.Log("Game Over");
     }
 
     public void GameRestart()
     {
         Time.timeScale = 1;
-        StartCoroutine(StageTransition(stageNum));
+        StartCoroutine("ReStartRoutine");
+    }
+
+    private IEnumerator ReStartRoutine()
+    {
+        yield return StartCoroutine(UIManager.instance.FadeOut());
+        Player.instance.Resurrection();
+        yield return null;
+        AnimatorInitialization();
+        SpawnManager.instance.EnemyClear();
+        yield return StartCoroutine(SpawnManager.instance.SpawnEnemies());
+        yield return StartCoroutine(UIManager.instance.FadeIn());
+        Player.instance.enabled = true;
+    }
+
+    public void GoVillage()
+    {
+        StartCoroutine(StageTransition(8));
+    }
+
+    public void GoLobby()
+    {
+        UIManager.instance.HideUI();
+        SceneManager.LoadScene(lobbyScene);
     }
 }

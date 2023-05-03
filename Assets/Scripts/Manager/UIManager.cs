@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance = null;
 
     [SerializeField]
-    private Reposition backgroundImage;
-    [SerializeField]
     private GameObject statusPanel;
+    [SerializeField]
+    private Slider hpBar;
+    [SerializeField]
+    private TextMeshProUGUI curGold;
     [SerializeField]
     private GameObject itemPanel;
     [SerializeField]
@@ -123,6 +126,19 @@ public class UIManager : MonoBehaviour
         stageName.SetActive(false);
     }
 
+    public void SetHP(int curHP)
+    {
+        if (curHP == 100)
+            hpBar.value = 1;
+        else
+            hpBar.value = (float)curHP / 100;
+    }
+
+    public void SetGold()
+    {
+        curGold.text = GameManager.instance.gold.ToString();
+    }
+
     public void HideUI()
     {
         statusPanel.SetActive(false);
@@ -139,9 +155,11 @@ public class UIManager : MonoBehaviour
     {
         gameOverPanel.SetActive(true);
 
+        /*
         if (GameManager.instance.stageNum > 5)
             returnButton.SetActive(true);
         else
             returnButton.SetActive(false);
+        */
     }
 }

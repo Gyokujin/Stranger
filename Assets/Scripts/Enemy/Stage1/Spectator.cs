@@ -154,6 +154,9 @@ public class Spectator : Enemy
     {
         StopCoroutine("Grabbing");
         onDie = true;
+        onChase = false;
+        onAttack = false;
+        onDamage = false;
         rigid.velocity = Vector2.zero;
         rigid.gravityScale = 0;
         collider.isTrigger = true;
@@ -165,8 +168,10 @@ public class Spectator : Enemy
         {
             lifeCount--;
             onDie = false;
+            onDamage = false;
             rigid.gravityScale = 1;
             collider.isTrigger = false;
+            animator.enabled = true;
             spriteRenderer.color = new Color(1, 1, 1, 1f);
         }
         else

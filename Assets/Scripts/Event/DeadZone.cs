@@ -8,17 +8,7 @@ public class DeadZone : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Player.instance.playerHP -= 10;
-
-            if (Player.instance.playerHP > 0)
-            {
-                collision.attachedRigidbody.velocity = Vector2.zero;
-                collision.gameObject.transform.position = new Vector2(GameManager.instance.startPointX[GameManager.instance.stageNum], GameManager.instance.startPointY[GameManager.instance.stageNum]);
-            }
-            else
-            {
-                GameManager.instance.GameOver();
-            }
+            StartCoroutine(GameManager.instance.GameOver());
         }
     }
 }

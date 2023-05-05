@@ -15,7 +15,7 @@ public class MoveCamera : MonoBehaviour
     [SerializeField]
     private Vector2 size;
     private Vector2[] centers = { new Vector2(103, -15), new Vector2(-3.5f, -9.5f), new Vector2(59.5f, -5.5f), new Vector2(123, -17), new Vector2(-5f, -2.5f), new Vector2(13.9f, -2.05f), new Vector2(13.9f, -2.05f), new Vector2(37.5f, 7.5f), new Vector2(37.5f, 7.5f), new Vector2(106, -5.1f), new Vector2(3, -1.1f), new Vector2(3, -1.1f), new Vector2(3, -1.1f), new Vector2(3, -1.1f) };
-    private Vector2[] sizes = { new Vector2(242, 52), new Vector2(30, 27), new Vector2(156, 35), new Vector2(80, 32), new Vector2(25, 15), new Vector2(31.5f, 10.7f), new Vector2(31.5f, 10.7f), new Vector2(135, 33), new Vector2(135, 33), new Vector2(246, 12.5f), new Vector2(40.25f, 20.7f), new Vector2(40.25f, 20.7f), new Vector2(40.25f, 20.7f), new Vector2(40.25f, 20.7f) };
+    private Vector2[] sizes = { new Vector2(242, 52), new Vector2(30, 27), new Vector2(156, 35), new Vector2(80, 32), new Vector2(25, 15), new Vector2(31.5f, 10.7f), new Vector2(31.5f, 10.7f), new Vector2(135, 33), new Vector2(135, 33), new Vector2(246, 12.5f), new Vector2(40.25f, 20.7f), new Vector2(40.25f, 20.7f), new Vector2(43.2f, 20.7f), new Vector2(40.25f, 20.7f) };
     private float height;
     private float width;
     [HideInInspector]

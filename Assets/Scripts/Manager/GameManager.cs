@@ -199,4 +199,9 @@ public class GameManager : MonoBehaviour
         UIManager.instance.HideUI();
         SceneManager.LoadScene(lobbyScene);
     }
+
+    public void GameQuit()
+    {
+        Application.Quit();
+    }
 }

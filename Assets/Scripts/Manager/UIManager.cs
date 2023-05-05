@@ -154,12 +154,5 @@ public class UIManager : MonoBehaviour
     public void ShowGameOver()
     {
         gameOverPanel.SetActive(true);
-
-        /*
-        if (GameManager.instance.stageNum > 5)
-            returnButton.SetActive(true);
-        else
-            returnButton.SetActive(false);
-        */
     }
 }

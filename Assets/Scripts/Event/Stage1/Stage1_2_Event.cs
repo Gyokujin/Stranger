@@ -34,6 +34,8 @@ public class Stage1_2_Event : MonoBehaviour
     private Animator creditText1;
     [SerializeField]
     private Animator creditText2;
+    [SerializeField]
+    private GameObject quitButton;
 
     void Awake()
     {
@@ -243,5 +245,13 @@ public class Stage1_2_Event : MonoBehaviour
         yield return StartCoroutine(UIManager.instance.FadeIn());
         creditText1.enabled = true;
         creditText2.enabled = true;
+
+        yield return new WaitForSeconds(2f);
+        quitButton.SetActive(true);
+    }
+
+    public void GameQuit()
+    {
+        GameManager.instance.GameQuit();
     }
 }

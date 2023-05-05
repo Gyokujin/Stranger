@@ -9,7 +9,6 @@ public class Gate : Object
 
     public void UseGate()
     {
-        SpawnManager.instance.EnemyClear();
         StartCoroutine(GameManager.instance.StageTransition(targetScene));
     }
 }
